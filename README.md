@@ -29,7 +29,7 @@
 
 ![Image alt](https://github.com/Lifailon/Template-Windows-Agent-Custom/blob/rsa/IOps/IOps-DiskSpd.jpg)
 
-### Тест на локальном диске SSD:
+### Тестирование на локальном диске SSD:
 
 ![Image alt](https://github.com/Lifailon/Template-Windows-Agent-Custom/blob/rsa/IOps/IOPS-local-ssd.jpg)
 
