@@ -1,0 +1,3002 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<zabbix_export>
+    <version>6.0</version>
+    <date>2022-08-14T22:34:35Z</date>
+    <groups>
+        <group>
+            <uuid>846977d1dfed4968bc5f8bdb363285bc</uuid>
+            <name>Windows Server</name>
+        </group>
+    </groups>
+    <templates>
+        <template>
+            <uuid>13b06904a6bf41cbb795e3193d896340</uuid>
+            <template>Windows Agent Custom</template>
+            <name>Windows Agent Custom</name>
+            <groups>
+                <group>
+                    <name>Windows Server</name>
+                </group>
+            </groups>
+            <items>
+                <item>
+                    <uuid>af550a1bfe74428eb24492d8af3b405e</uuid>
+                    <name>Host name of Zabbix agent running</name>
+                    <key>agent.hostname</key>
+                    <delay>1h</delay>
+                    <history>7d</history>
+                    <trends>0</trends>
+                    <value_type>CHAR</value_type>
+                    <preprocessing>
+                        <step>
+                            <type>DISCARD_UNCHANGED_HEARTBEAT</type>
+                            <parameters>
+                                <parameter>1d</parameter>
+                            </parameters>
+                        </step>
+                    </preprocessing>
+                    <tags>
+                        <tag>
+                            <tag>component</tag>
+                            <value>system</value>
+                        </tag>
+                    </tags>
+                </item>
+                <item>
+                    <uuid>f81e2ce0d1104f9aaf1fc49284ed0ed4</uuid>
+                    <name>Zabbix agent ping</name>
+                    <key>agent.ping</key>
+                    <history>7d</history>
+                    <description>The agent always returns 1 for this item. It could be used in combination with nodata() for availability check.</description>
+                    <valuemap>
+                        <name>Zabbix agent ping status</name>
+                    </valuemap>
+                    <tags>
+                        <tag>
+                            <tag>component</tag>
+                            <value>system</value>
+                        </tag>
+                    </tags>
+                </item>
+                <item>
+                    <uuid>5707443d739d4689bde192e75ff4bd0f</uuid>
+                    <name>Version of Zabbix agent running</name>
+                    <key>agent.version</key>
+                    <delay>1h</delay>
+                    <history>7d</history>
+                    <trends>0</trends>
+                    <value_type>CHAR</value_type>
+                    <preprocessing>
+                        <step>
+                            <type>DISCARD_UNCHANGED_HEARTBEAT</type>
+                            <parameters>
+                                <parameter>1d</parameter>
+                            </parameters>
+                        </step>
+                    </preprocessing>
+                    <tags>
+                        <tag>
+                            <tag>component</tag>
+                            <value>application</value>
+                        </tag>
+                    </tags>
+                </item>
+                <item>
+                    <uuid>63a2a595c41440e392f0bcb01adbf3f3</uuid>
+                    <name>Memory: Available Bytes</name>
+                    <key>perf_counter_en[&quot;\Memory\Available Mbytes&quot;]</key>
+                    <history>7d</history>
+                    <trends>30d</trends>
+                    <units>B</units>
+                    <description>Memory: Available Bytes
+Порог: Этот счётчик должен быть постоянно выше 5 000 КВ (если не разбираться в нюансах)
+Значение: Отслеживает количество доступной памяти в байтах для выполнения различных процессов.. Низкие показатели означают нехватку памяти. Решение — увеличить память.
+Есть смысл выставлять порог для \Memory\Available Mbytesвручную из соображений:
+•50% свободной памяти доступно = Отлично
+•25% доступно памяти = Требует внимания
+•10% свободно = Возможны проблемы
+•Меньше 5% доступно памяти= Критично для скорости, нужно вмешиваться</description>
+                    <tags>
+                        <tag>
+                            <tag>component</tag>
+                            <value>memory</value>
+                        </tag>
+                    </tags>
+                </item>
+                <item>
+                    <uuid>5219a246de0641a89685a961cdd08c0b</uuid>
+                    <name>Cache bytes</name>
+                    <key>perf_counter_en[&quot;\Memory\Cache Bytes&quot;]</key>
+                    <history>7d</history>
+                    <units>B</units>
+                    <description>Cache Bytes is the sum of the Memory\\System Cache Resident Bytes, Memory\\System Driver Resident Bytes,
+Memory\\System Code Resident Bytes, and Memory\\Pool Paged Resident Bytes counters. This counter displays
+the last observed value only; it is not an average.</description>
+                    <tags>
+                        <tag>
+                            <tag>component</tag>
+                            <value>memory</value>
+                        </tag>
+                    </tags>
+                </item>
+                <item>
+                    <uuid>732f93a07f8e4fd187562e9a1af49d2e</uuid>
+                    <name>Cache Faults</name>
+                    <key>perf_counter_en[&quot;\Memory\Cache Faults&quot;]</key>
+                    <history>7d</history>
+                    <trends>30d</trends>
+                    <units>B</units>
+                    <description>Cache Faults - учитывает промахи подсистемы кэширования. Таким образом, если \Memory\Pages/sec,\Memory\Page Reads/sec, Memory\Pages Input/sec постоянно находятся на высоком уровне, а \Memory\Cache Faults на низком, то можно предположить, что операционная система активно работает с файлом подкачки, что, в свою очередь, говорит о недостатке памяти.</description>
+                    <tags>
+                        <tag>
+                            <tag>component</tag>
+                            <value>memory</value>
+                        </tag>
+                    </tags>
+                </item>
+                <item>
+                    <uuid>2ea74fafb9334de095adcb47cced578d</uuid>
+                    <name>Free system page table entries</name>
+                    <key>perf_counter_en[&quot;\Memory\Free System Page Table Entries&quot;]</key>
+                    <history>7d</history>
+                    <description>This indicates the number of page table entries not currently in use by the system. If the number is less
+than 5,000, there may well be a memory leak or you running out of memory.</description>
+                    <tags>
+                        <tag>
+                            <tag>component</tag>
+                            <value>memory</value>
+                        </tag>
+                    </tags>
+                    <triggers>
+                        <trigger>
+                            <uuid>e3118e2e6109460f80cc2d56795ed42f</uuid>
+                            <expression>max(/Windows Agent Custom/perf_counter_en[&quot;\Memory\Free System Page Table Entries&quot;],5m)&lt;{$MEM.PAGE_TABLE_CRIT.MIN}</expression>
+                            <name>Количество свободных записей в системной таблице страниц (ОЗУ) меньше {$MEM.PAGE_TABLE_CRIT.MIN} в течении 5 минут</name>
+                            <opdata>Текущее значение: {ITEM.LASTVALUE1}</opdata>
+                            <priority>WARNING</priority>
+                            <description>Page Table Entry (PTE) — таблица страниц, это структура данных, используемая системой виртуальной памяти в операционной системе компьютера для хранения сопоставления между виртуальным адресом и физическим адресом. Виртуальные адреса используются выполняющимся процессом, в то время как физические адреса используются аппаратным обеспечением, или, более конкретно, подсистемой ОЗУ. Таблица страниц является ключевым компонентом преобразования виртуальных адресов, который необходим для доступа к данным в памяти. При отгрузке на HDD и при чтении страниц с HDD быстрее получится записать несколько больших страниц, чем много маленьких такого же суммарного размера. Если количество свободных записей в системной таблице страниц меньше 5 000, то возможна утечка памяти.</description>
+                            <tags>
+                                <tag>
+                                    <tag>scope</tag>
+                                    <value>capacity</value>
+                                </tag>
+                            </tags>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <uuid>6c41d254585a4d7b81a0c5766a8913c1</uuid>
+                    <name>Memory page faults per second</name>
+                    <key>perf_counter_en[&quot;\Memory\Page Faults/sec&quot;]</key>
+                    <history>7d</history>
+                    <value_type>FLOAT</value_type>
+                    <description>Page Faults/sec is the average number of pages faulted per second. It is measured in number of pages
+faulted per second because only one page is faulted in each fault operation, hence this is also equal
+to the number of page fault operations. This counter includes both hard faults (those that require
+disk access) and soft faults (where the faulted page is found elsewhere in physical memory.) Most
+processors can handle large numbers of soft faults without significant consequence. However, hard faults,
+which require disk access, can cause significant delays.</description>
+                    <tags>
+                        <tag>
+                            <tag>component</tag>
+                            <value>memory</value>
+                        </tag>
+                    </tags>
+                </item>
+                <item>
+                    <uuid>8d2cc32f12cd44faa3817485c7ef0640</uuid>
+                    <name>Memory page faults per second</name>
+                    <key>perf_counter_en[&quot;\Memory\Page Reads/sec&quot;]</key>
+                    <history>7d</history>
+                    <trends>30d</trends>
+                    <value_type>FLOAT</value_type>
+                    <description>Счетчик \Memory\Page Reads/sec можно использовать в дополнение к \Memory\Pages/sec. Он показывает, сколько операций чтения в единицу времени, безотносительно к страницам, было сделано при обработке страничных прерываний. Счетчики Memory\Pages Input/sec и \Memory\Page Reads/sec нужно рассматривать совместно. Первый из них содержит количество страниц, прочитанных с диска, а второй — количество операций чтения, совершенных при подкачке.</description>
+                    <tags>
+                        <tag>
+                            <tag>component</tag>
+                            <value>memory</value>
+                        </tag>
+                    </tags>
+                </item>
+                <item>
+                    <uuid>287163bc5b0441c4bf51489432a278eb</uuid>
+                    <name>Memory pages per second</name>
+                    <key>perf_counter_en[&quot;\Memory\Pages/sec&quot;]</key>
+                    <history>7d</history>
+                    <value_type>FLOAT</value_type>
+                    <description>This measures the rate at which pages are read from or written to disk to resolve hard page faults.
+If the value is greater than 1,000, as a result of excessive paging, there may be a memory leak.</description>
+                    <tags>
+                        <tag>
+                            <tag>component</tag>
+                            <value>memory</value>
+                        </tag>
+                    </tags>
+                    <triggers>
+                        <trigger>
+                            <uuid>ab4c9a66d16f42e6a32f6144f4d2a3ca</uuid>
+                            <expression>min(/Windows Agent Custom/perf_counter_en[&quot;\Memory\Pages/sec&quot;],5m)&gt;{$MEM.PAGE_SEC.CRIT.MAX}</expression>
+                            <name>Активное использование файла подкачки (Pages/sec выше {$MEM.PAGE_SEC.CRIT.MAX})</name>
+                            <opdata>Текущее значение: {ITEM.LASTVALUE1}</opdata>
+                            <priority>WARNING</priority>
+                            <description>Pages/sec - отображает число страниц, считанные или записанные на диск для разрешения обращения к страницам памяти, которые не были загружены в оперативную память в момент обращения. Эта величина является суммой величин Pages Input/sec и Pages Output/sec. Это основной счетчик, за которым следует следить в том случае, если наблюдается большая нагрузка на использование памяти и связанный с этим избыточный страничный обмен.</description>
+                            <tags>
+                                <tag>
+                                    <tag>scope</tag>
+                                    <value>capacity</value>
+                                </tag>
+                            </tags>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <uuid>fb822cb2a17948208a61bd6661c496df</uuid>
+                    <name>Memory pool non-paged</name>
+                    <key>perf_counter_en[&quot;\Memory\Pool Nonpaged Bytes&quot;]</key>
+                    <history>7d</history>
+                    <units>B</units>
+                    <description>This measures the size, in bytes, of the non-paged pool. This is an area of system memory for objects
+that cannot be written to disk but instead must remain in physical memory as long as they are allocated.
+There is a possible memory leak if the value is greater than 175MB (or 100MB with the /3GB switch).
+A typical Event ID 2019 is recorded in the system event log.</description>
+                    <tags>
+                        <tag>
+                            <tag>component</tag>
+                            <value>memory</value>
+                        </tag>
+                    </tags>
+                </item>
+                <item>
+                    <uuid>b99a722d267d455fad3c07c53302b20f</uuid>
+                    <name>Used swap space in %</name>
+                    <key>perf_counter_en[&quot;\Paging file(_Total)\% Usage&quot;]</key>
+                    <history>7d</history>
+                    <value_type>FLOAT</value_type>
+                    <units>%</units>
+                    <description>The used space of swap volume/file in percent.</description>
+                    <tags>
+                        <tag>
+                            <tag>component</tag>
+                            <value>memory</value>
+                        </tag>
+                        <tag>
+                            <tag>component</tag>
+                            <value>storage</value>
+                        </tag>
+                    </tags>
+                </item>
+                <item>
+                    <uuid>ee1f116fdab34969a6e6f5e1c25fc3d2</uuid>
+                    <name>CPU DPC time</name>
+                    <key>perf_counter_en[&quot;\Processor Information(_total)\% DPC Time&quot;]</key>
+                    <history>7d</history>
+                    <value_type>FLOAT</value_type>
+                    <units>%</units>
+                    <description>Processor DPC time is the time that a single processor spent receiving and servicing deferred procedure
+calls (DPCs). DPCs are interrupts that run at a lower priority than standard interrupts. % DPC Time is a
+component of % Privileged Time because DPCs are executed in privileged mode. If a high % DPC Time is
+sustained, there may be a processor bottleneck or an application or hardware related issue that can
+significantly diminish overall system performance.</description>
+                    <tags>
+                        <tag>
+                            <tag>component</tag>
+                            <value>cpu</value>
+                        </tag>
+                    </tags>
+                </item>
+                <item>
+                    <uuid>e403552481b04ebdba2e8a019f114f20</uuid>
+                    <name>CPU interrupt time</name>
+                    <key>perf_counter_en[&quot;\Processor Information(_total)\% Interrupt Time&quot;]</key>
+                    <delay>10s</delay>
+                    <history>7d</history>
+                    <trends>30d</trends>
+                    <value_type>FLOAT</value_type>
+                    <units>%</units>
+                    <description>The Processor Information\% Interrupt Time is the time the processor spends receiving and servicing
+hardware interrupts during sample intervals. This value is an indirect indicator of the activity of
+devices that generate interrupts, such as the system clock, the mouse, disk drivers, data communication
+lines, network interface cards and other peripheral devices. This is an easy way to identify a potential
+hardware failure. This should never be higher than 20%.</description>
+                    <tags>
+                        <tag>
+                            <tag>component</tag>
+                            <value>cpu</value>
+                        </tag>
+                    </tags>
+                    <triggers>
+                        <trigger>
+                            <uuid>f67bedcb282349b2aac052baf4963480</uuid>
+                            <expression>min(/Windows Agent Custom/perf_counter_en[&quot;\Processor Information(_total)\% Interrupt Time&quot;],10m)&gt;{$CPU.INTERRUPT.CRIT.MAX}</expression>
+                            <name>Прерывания CPU (interrupt time) выше {$CPU.INTERRUPT.CRIT.MAX}% в течении 10 минут</name>
+                            <opdata>Текущее значение: {ITEM.LASTVALUE1}</opdata>
+                            <priority>AVERAGE</priority>
+                            <description>Interrupt Time - процент времени, которое процессор тратит на обработку аппаратных прерываний от устройств. Большие значения счетчика могут говорить о проблемах с оборудованием. В норме показания не должны выходить за 5% даже при значительной (&gt;50%) нагрузке на ЦП. Это значение является косвенным показателем активности устройств, генерирующих прерывания, таких как системные часы, мышь, драйверы дисков, сетевые интерфейсные карты и другие периферийные устройства. Этот показатель никогда не должен быть выше 20%. Поскольку прерывания принимаются от оборудования, высокие значения косвенно могут свидетельствовать о проблемах с устройствами или с их драйверами.</description>
+                            <tags>
+                                <tag>
+                                    <tag>scope</tag>
+                                    <value>performance</value>
+                                </tag>
+                            </tags>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <uuid>37448f05afe340a3891d05528c9d1adc</uuid>
+                    <name>CPU privileged time</name>
+                    <key>perf_counter_en[&quot;\Processor Information(_total)\% Privileged Time&quot;]</key>
+                    <delay>10s</delay>
+                    <history>7d</history>
+                    <trends>30d</trends>
+                    <value_type>FLOAT</value_type>
+                    <units>%</units>
+                    <description>The Processor Information\% Privileged Time counter shows the percent of time that the processor is spent
+executing in Kernel (or Privileged) mode. Privileged mode includes services interrupts inside Interrupt
+Service Routines (ISRs), executing Deferred Procedure Calls (DPCs), Device Driver calls and other kernel-mode
+functions of the Windows® Operating System.</description>
+                    <tags>
+                        <tag>
+                            <tag>component</tag>
+                            <value>cpu</value>
+                        </tag>
+                    </tags>
+                    <triggers>
+                        <trigger>
+                            <uuid>4d099256b3ba42f1b90143e2014900dd</uuid>
+                            <expression>min(/Windows Agent Custom/perf_counter_en[&quot;\Processor Information(_total)\% Privileged Time&quot;],10m)&gt;{$CPU.PRIV.CRIT.MAX}</expression>
+                            <name>Запросы ядра на CPU (privileged time) выше {$CPU.PRIV.CRIT.MAX}% в течении 10 минут</name>
+                            <opdata>Текущее значение: {ITEM.LASTVALUE1}</opdata>
+                            <priority>AVERAGE</priority>
+                            <description>% Privileged Time — отображает процент времени, которое процессор затрачивает на обработку запросов ядра, т.е. выполняет код в привилегированном режиме, все функции ОС работают именно в этом режиме. Не должно быть ситуации, когда работа в привилегированном режиме превышает 10%. При значениях выше 20% нужно анализировать показания счетчиков % User Time, % Interrupt Time и % DPC Time.</description>
+                            <tags>
+                                <tag>
+                                    <tag>scope</tag>
+                                    <value>performance</value>
+                                </tag>
+                            </tags>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <uuid>575912d512624143b564ca0fbfd0bb8f</uuid>
+                    <name>CPU user time</name>
+                    <key>perf_counter_en[&quot;\Processor Information(_total)\% User Time&quot;]</key>
+                    <delay>10s</delay>
+                    <history>7d</history>
+                    <trends>30d</trends>
+                    <value_type>FLOAT</value_type>
+                    <units>%</units>
+                    <description>The Processor Information\% User Time counter shows the percent of time that the processor(s) is spent executing
+in User mode.</description>
+                    <tags>
+                        <tag>
+                            <tag>component</tag>
+                            <value>cpu</value>
+                        </tag>
+                    </tags>
+                </item>
+                <item>
+                    <uuid>2322a85bfc1049a3b5c892d83b5d5054</uuid>
+                    <name>Context switches per second</name>
+                    <key>perf_counter_en[&quot;\System\Context Switches/sec&quot;]</key>
+                    <history>7d</history>
+                    <value_type>FLOAT</value_type>
+                    <description>Context Switches/sec is the combined rate at which all processors on the computer are switched from one thread to another.
+Context switches occur when a running thread voluntarily relinquishes the processor, is preempted by a higher priority ready thread, or switches between user-mode and privileged (kernel) mode to use an Executive or subsystem service.
+It is the sum of Thread\\Context Switches/sec for all threads running on all processors in the computer and is measured in numbers of switches.
+There are context switch counters on the System and Thread objects. This counter displays the difference between the values observed in the last two samples, divided by the duration of the sample interval.</description>
+                    <tags>
+                        <tag>
+                            <tag>component</tag>
+                            <value>cpu</value>
+                        </tag>
+                    </tags>
+                </item>
+                <item>
+                    <uuid>002af28df72f4a788c88bc022d88c6dd</uuid>
+                    <name>CPU queue length</name>
+                    <key>perf_counter_en[&quot;\System\Processor Queue Length&quot;]</key>
+                    <delay>30s</delay>
+                    <history>7d</history>
+                    <trends>30d</trends>
+                    <value_type>FLOAT</value_type>
+                    <description>The Processor Queue Length shows the number of threads that are observed as delayed in the processor Ready Queue
+and are waiting to be executed.</description>
+                    <tags>
+                        <tag>
+                            <tag>component</tag>
+                            <value>cpu</value>
+                        </tag>
+                    </tags>
+                </item>
+                <item>
+                    <uuid>630b7b2af6274936ab80b1dd774113e5</uuid>
+                    <name>Number of threads</name>
+                    <key>perf_counter_en[&quot;\System\Threads&quot;]</key>
+                    <history>7d</history>
+                    <description>The number of threads used by all running processes.</description>
+                    <tags>
+                        <tag>
+                            <tag>component</tag>
+                            <value>os</value>
+                        </tag>
+                    </tags>
+                </item>
+                <item>
+                    <uuid>b305029532f84daf93c8da2d181ac3a1</uuid>
+                    <name>Number of processes</name>
+                    <key>proc.num[]</key>
+                    <history>7d</history>
+                    <description>The number of processes.</description>
+                    <tags>
+                        <tag>
+                            <tag>component</tag>
+                            <value>os</value>
+                        </tag>
+                    </tags>
+                    <triggers>
+                        <trigger>
+                            <uuid>530de3c9865e46389f5bad1a784e83dd</uuid>
+                            <expression>min(/Windows Agent Custom/proc.num[],5m)&gt;{$PROC.CRIT}</expression>
+                            <name>Количество активных процессов выше {$PROC.CRIT}</name>
+                            <opdata>Текущее значение: {ITEM.LASTVALUE1}</opdata>
+                            <priority>WARNING</priority>
+                            <tags>
+                                <tag>
+                                    <tag>scope</tag>
+                                    <value>performance</value>
+                                </tag>
+                            </tags>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <uuid>c2ed8e2efab04564b6c70ee8ad14730f</uuid>
+                    <name>CPU utilization</name>
+                    <key>system.cpu.util</key>
+                    <delay>10s</delay>
+                    <history>7d</history>
+                    <trends>30d</trends>
+                    <value_type>FLOAT</value_type>
+                    <units>%</units>
+                    <description>CPU utilization in %.</description>
+                    <tags>
+                        <tag>
+                            <tag>component</tag>
+                            <value>cpu</value>
+                        </tag>
+                    </tags>
+                    <triggers>
+                        <trigger>
+                            <uuid>806aa232f56640ab98aacc79491fc4d7</uuid>
+                            <expression>min(/Windows Agent Custom/system.cpu.util,5m)&gt;{$CPU.UTIL.CRIT}</expression>
+                            <name>Загрузка процессора выше {$CPU.UTIL.CRIT}% в течение 5 минут</name>
+                            <opdata>Текущее значение: {ITEM.LASTVALUE1}</opdata>
+                            <priority>HIGH</priority>
+                            <description>минуты (элемент данных в течение пяти минут) больше макроса критического значения</description>
+                            <tags>
+                                <tag>
+                                    <tag>scope</tag>
+                                    <value>performance</value>
+                                </tag>
+                            </tags>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <uuid>cb056886ce72426e833a0445f9263906</uuid>
+                    <name>System name</name>
+                    <key>system.hostname</key>
+                    <delay>1h</delay>
+                    <history>2w</history>
+                    <trends>0</trends>
+                    <value_type>CHAR</value_type>
+                    <description>System host name.</description>
+                    <inventory_link>NAME</inventory_link>
+                    <preprocessing>
+                        <step>
+                            <type>DISCARD_UNCHANGED_HEARTBEAT</type>
+                            <parameters>
+                                <parameter>1d</parameter>
+                            </parameters>
+                        </step>
+                    </preprocessing>
+                    <tags>
+                        <tag>
+                            <tag>component</tag>
+                            <value>system</value>
+                        </tag>
+                    </tags>
+                    <triggers>
+                        <trigger>
+                            <uuid>6b50d36a4e29468a9546e880f3004399</uuid>
+                            <expression>last(/Windows Agent Custom/system.hostname,#1)&lt;&gt;last(/Windows Agent Custom/system.hostname,#2) and length(last(/Windows Agent Custom/system.hostname))&gt;0</expression>
+                            <name>Изменилось имя сервера, новое имя: {ITEM.VALUE}</name>
+                            <opdata>Текущее значение: {ITEM.LASTVALUE1}</opdata>
+                            <priority>WARNING</priority>
+                            <manual_close>YES</manual_close>
+                            <tags>
+                                <tag>
+                                    <tag>scope</tag>
+                                    <value>notice</value>
+                                </tag>
+                            </tags>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <uuid>94c4dfe23e2e4c6e995a3a715941a8eb</uuid>
+                    <name>System local time</name>
+                    <key>system.localtime</key>
+                    <history>7d</history>
+                    <units>unixtime</units>
+                    <description>System local time of the host.</description>
+                    <tags>
+                        <tag>
+                            <tag>component</tag>
+                            <value>system</value>
+                        </tag>
+                    </tags>
+                    <triggers>
+                        <trigger>
+                            <uuid>37ca2366c8474cc8a49a605e93377601</uuid>
+                            <expression>fuzzytime(/Windows Agent Custom/system.localtime,{$SYSTEM.FUZZYTIME.MAX})=0</expression>
+                            <name>Ошибка синхронизация системного времени. Разница с сервером Zabbix:  {$SYSTEM.FUZZYTIME.MAX}s)</name>
+                            <opdata>Текущее значение: {ITEM.LASTVALUE1}</opdata>
+                            <priority>WARNING</priority>
+                            <manual_close>YES</manual_close>
+                            <tags>
+                                <tag>
+                                    <tag>scope</tag>
+                                    <value>notice</value>
+                                </tag>
+                            </tags>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <uuid>7e8b3476db6d4322a10cd1a28cbdb7ea</uuid>
+                    <name>Operating system architecture</name>
+                    <key>system.sw.arch</key>
+                    <delay>1h</delay>
+                    <history>2w</history>
+                    <trends>0</trends>
+                    <value_type>CHAR</value_type>
+                    <description>Operating system architecture of the host.</description>
+                    <preprocessing>
+                        <step>
+                            <type>DISCARD_UNCHANGED_HEARTBEAT</type>
+                            <parameters>
+                                <parameter>1d</parameter>
+                            </parameters>
+                        </step>
+                    </preprocessing>
+                    <tags>
+                        <tag>
+                            <tag>component</tag>
+                            <value>os</value>
+                        </tag>
+                    </tags>
+                </item>
+                <item>
+                    <uuid>11cac38334544e5cbb028cfd473cb39e</uuid>
+                    <name>Free swap space</name>
+                    <type>CALCULATED</type>
+                    <key>system.swap.free</key>
+                    <history>7d</history>
+                    <units>B</units>
+                    <params>last(//system.swap.size[,total]) - last(//system.swap.size[,total]) / 100 * last(//perf_counter_en[&quot;\Paging file(_Total)\% Usage&quot;])</params>
+                    <description>The free space of swap volume/file in bytes.</description>
+                    <tags>
+                        <tag>
+                            <tag>component</tag>
+                            <value>memory</value>
+                        </tag>
+                        <tag>
+                            <tag>component</tag>
+                            <value>storage</value>
+                        </tag>
+                    </tags>
+                </item>
+                <item>
+                    <uuid>9c7e3c843a3045df81dddc5d18de267c</uuid>
+                    <name>Free swap space in %</name>
+                    <type>DEPENDENT</type>
+                    <key>system.swap.pfree</key>
+                    <delay>0</delay>
+                    <history>7d</history>
+                    <value_type>FLOAT</value_type>
+                    <units>%</units>
+                    <description>The free space of swap volume/file in percent.</description>
+                    <preprocessing>
+                        <step>
+                            <type>JAVASCRIPT</type>
+                            <parameters>
+                                <parameter>return (100 - value)</parameter>
+                            </parameters>
+                        </step>
+                    </preprocessing>
+                    <master_item>
+                        <key>perf_counter_en[&quot;\Paging file(_Total)\% Usage&quot;]</key>
+                    </master_item>
+                    <tags>
+                        <tag>
+                            <tag>component</tag>
+                            <value>memory</value>
+                        </tag>
+                        <tag>
+                            <tag>component</tag>
+                            <value>storage</value>
+                        </tag>
+                    </tags>
+                </item>
+                <item>
+                    <uuid>f981835baf04494eaff2f33f159e0ab5</uuid>
+                    <name>Total swap space</name>
+                    <key>system.swap.size[,total]</key>
+                    <history>7d</history>
+                    <units>B</units>
+                    <description>The total space of swap volume/file in bytes.</description>
+                    <tags>
+                        <tag>
+                            <tag>component</tag>
+                            <value>memory</value>
+                        </tag>
+                        <tag>
+                            <tag>component</tag>
+                            <value>storage</value>
+                        </tag>
+                    </tags>
+                </item>
+                <item>
+                    <uuid>b103a2c22fe344f886e9dc9f4e4a65ec</uuid>
+                    <name>System description</name>
+                    <key>system.uname</key>
+                    <delay>15m</delay>
+                    <history>2w</history>
+                    <trends>0</trends>
+                    <value_type>CHAR</value_type>
+                    <description>System description of the host.</description>
+                    <preprocessing>
+                        <step>
+                            <type>DISCARD_UNCHANGED_HEARTBEAT</type>
+                            <parameters>
+                                <parameter>1d</parameter>
+                            </parameters>
+                        </step>
+                    </preprocessing>
+                    <tags>
+                        <tag>
+                            <tag>component</tag>
+                            <value>system</value>
+                        </tag>
+                    </tags>
+                </item>
+                <item>
+                    <uuid>12503fbf4400488e9b5ff0488f164cb6</uuid>
+                    <name>Uptime</name>
+                    <key>system.uptime</key>
+                    <delay>30s</delay>
+                    <history>2w</history>
+                    <trends>0d</trends>
+                    <units>uptime</units>
+                    <description>System uptime in 'N days, hh:mm:ss' format.</description>
+                    <tags>
+                        <tag>
+                            <tag>component</tag>
+                            <value>system</value>
+                        </tag>
+                    </tags>
+                    <triggers>
+                        <trigger>
+                            <uuid>d27b9eab4034439f91dff41fe6f043ab</uuid>
+                            <expression>last(/Windows Agent Custom/system.uptime)&lt;10m</expression>
+                            <name>Сервер был перезагружен (время работы меньше 10 минут)</name>
+                            <priority>WARNING</priority>
+                            <manual_close>YES</manual_close>
+                            <tags>
+                                <tag>
+                                    <tag>scope</tag>
+                                    <value>notice</value>
+                                </tag>
+                            </tags>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <uuid>09e9a345a0f445b1a65685911f5eb9b0</uuid>
+                    <name>Total memory</name>
+                    <key>vm.memory.size[total]</key>
+                    <delay>10s</delay>
+                    <history>7d</history>
+                    <trends>30d</trends>
+                    <units>B</units>
+                    <description>Total memory in Bytes.</description>
+                    <tags>
+                        <tag>
+                            <tag>component</tag>
+                            <value>memory</value>
+                        </tag>
+                    </tags>
+                </item>
+                <item>
+                    <uuid>1cbf45e11dab453797fe291639aa0c01</uuid>
+                    <name>Used memory</name>
+                    <key>vm.memory.size[used]</key>
+                    <delay>10s</delay>
+                    <history>7d</history>
+                    <trends>30d</trends>
+                    <units>B</units>
+                    <description>Used memory in Bytes.</description>
+                    <tags>
+                        <tag>
+                            <tag>component</tag>
+                            <value>memory</value>
+                        </tag>
+                    </tags>
+                </item>
+                <item>
+                    <uuid>3b1e4ecaa04a46e9b0aee956918f0713</uuid>
+                    <name>Memory utilization</name>
+                    <type>CALCULATED</type>
+                    <key>vm.memory.util</key>
+                    <delay>10s</delay>
+                    <history>7d</history>
+                    <trends>30d</trends>
+                    <value_type>FLOAT</value_type>
+                    <units>%</units>
+                    <params>last(//vm.memory.size[used]) / last(//vm.memory.size[total]) * 100</params>
+                    <description>Memory utilization in %.</description>
+                    <tags>
+                        <tag>
+                            <tag>component</tag>
+                            <value>memory</value>
+                        </tag>
+                    </tags>
+                    <triggers>
+                        <trigger>
+                            <uuid>b442993bb2a6404a8ebcb7be39d16ce6</uuid>
+                            <expression>min(/Windows Agent Custom/vm.memory.util,5m)&gt;{$MEMORY.UTIL.MAX}</expression>
+                            <name>Загрузка оперативной памяти выше {$MEMORY.UTIL.MAX}% в течение 5 минут</name>
+                            <opdata>Текущее значение: {ITEM.LASTVALUE1}</opdata>
+                            <priority>HIGH</priority>
+                            <description>минуты (элемент данных в течение пяти минут) больше {макроса критического значения}</description>
+                            <tags>
+                                <tag>
+                                    <tag>scope</tag>
+                                    <value>capacity</value>
+                                </tag>
+                                <tag>
+                                    <tag>scope</tag>
+                                    <value>performance</value>
+                                </tag>
+                            </tags>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <uuid>08b70a5b80fd435ba393e3deb3ca5adb</uuid>
+                    <name>Network interfaces WMI get</name>
+                    <key>wmi.getall[root\cimv2,&quot;select Name,Description,NetConnectionID,Speed,AdapterTypeId,NetConnectionStatus,GUID from win32_networkadapter where PhysicalAdapter=True and NetConnectionStatus&gt;0&quot;]</key>
+                    <history>0</history>
+                    <trends>0</trends>
+                    <value_type>TEXT</value_type>
+                    <description>win32_networkadapter</description>
+                    <preprocessing>
+                        <step>
+                            <type>DISCARD_UNCHANGED_HEARTBEAT</type>
+                            <parameters>
+                                <parameter>1h</parameter>
+                            </parameters>
+                        </step>
+                    </preprocessing>
+                    <tags>
+                        <tag>
+                            <tag>component</tag>
+                            <value>raw</value>
+                        </tag>
+                    </tags>
+                </item>
+                <item>
+                    <uuid>83c8c6f15b524a2fb04fc90d04d3e8a2</uuid>
+                    <name>Number of cores</name>
+                    <key>wmi.get[root/cimv2,&quot;Select NumberOfLogicalProcessors from Win32_ComputerSystem&quot;]</key>
+                    <history>7d</history>
+                    <description>The number of logical processors available on the computer.</description>
+                    <tags>
+                        <tag>
+                            <tag>component</tag>
+                            <value>cpu</value>
+                        </tag>
+                    </tags>
+                </item>
+                <item>
+                    <uuid>3dcb0f79342b4ded97cdec0794472266</uuid>
+                    <name>Zabbix agent availability</name>
+                    <type>INTERNAL</type>
+                    <key>zabbix[host,agent,available]</key>
+                    <history>7d</history>
+                    <description>Monitoring agent availability status</description>
+                    <valuemap>
+                        <name>zabbix.host.available</name>
+                    </valuemap>
+                    <tags>
+                        <tag>
+                            <tag>component</tag>
+                            <value>system</value>
+                        </tag>
+                    </tags>
+                    <triggers>
+                        <trigger>
+                            <uuid>05beb4500cae480892fad0739f99807d</uuid>
+                            <expression>max(/Windows Agent Custom/zabbix[host,agent,available],{$AGENT.TIMEOUT})=0</expression>
+                            <name>Агент Zabbix недоступен в течении {$AGENT.TIMEOUT} минут</name>
+                            <priority>WARNING</priority>
+                            <manual_close>YES</manual_close>
+                            <tags>
+                                <tag>
+                                    <tag>scope</tag>
+                                    <value>availability</value>
+                                </tag>
+                            </tags>
+                        </trigger>
+                    </triggers>
+                </item>
+            </items>
+            <discovery_rules>
+                <discovery_rule>
+                    <uuid>ba19d6566fdb4a668d4363769d1fee01</uuid>
+                    <name>Network interfaces discovery</name>
+                    <type>DEPENDENT</type>
+                    <key>net.if.discovery</key>
+                    <delay>0</delay>
+                    <filter>
+                        <evaltype>AND</evaltype>
+                        <conditions>
+                            <condition>
+                                <macro>{#IFNAME}</macro>
+                                <value>{$NET.IF.IFNAME.MATCHES}</value>
+                                <formulaid>E</formulaid>
+                            </condition>
+                            <condition>
+                                <macro>{#IFNAME}</macro>
+                                <value>{$NET.IF.IFNAME.NOT_MATCHES}</value>
+                                <operator>NOT_MATCHES_REGEX</operator>
+                                <formulaid>F</formulaid>
+                            </condition>
+                            <condition>
+                                <macro>{#IFDESCR}</macro>
+                                <value>{$NET.IF.IFDESCR.MATCHES}</value>
+                                <formulaid>C</formulaid>
+                            </condition>
+                            <condition>
+                                <macro>{#IFDESCR}</macro>
+                                <value>{$NET.IF.IFDESCR.NOT_MATCHES}</value>
+                                <operator>NOT_MATCHES_REGEX</operator>
+                                <formulaid>D</formulaid>
+                            </condition>
+                            <condition>
+                                <macro>{#IFALIAS}</macro>
+                                <value>{$NET.IF.IFALIAS.MATCHES}</value>
+                                <formulaid>A</formulaid>
+                            </condition>
+                            <condition>
+                                <macro>{#IFALIAS}</macro>
+                                <value>{$NET.IF.IFALIAS.NOT_MATCHES}</value>
+                                <operator>NOT_MATCHES_REGEX</operator>
+                                <formulaid>B</formulaid>
+                            </condition>
+                        </conditions>
+                    </filter>
+                    <description>Discovery of installed network interfaces.</description>
+                    <item_prototypes>
+                        <item_prototype>
+                            <uuid>8a7bb1e8afd24d32a65fa2116ba439ce</uuid>
+                            <name>Interface {#IFNAME}({#IFALIAS}): отброшенных входящих пакетов (drop)</name>
+                            <key>net.if.in[&quot;{#IFGUID}&quot;,dropped]</key>
+                            <delay>3m</delay>
+                            <history>7d</history>
+                            <description>Количество входящих пакетов, отброшенных на сетевом интерфейсе.</description>
+                            <preprocessing>
+                                <step>
+                                    <type>CHANGE_PER_SECOND</type>
+                                    <parameters>
+                                        <parameter/>
+                                    </parameters>
+                                </step>
+                            </preprocessing>
+                            <tags>
+                                <tag>
+                                    <tag>component</tag>
+                                    <value>network</value>
+                                </tag>
+                                <tag>
+                                    <tag>description</tag>
+                                    <value>{#IFALIAS}</value>
+                                </tag>
+                                <tag>
+                                    <tag>interface</tag>
+                                    <value>{#IFNAME}</value>
+                                </tag>
+                            </tags>
+                        </item_prototype>
+                        <item_prototype>
+                            <uuid>6e1f3dfb91024095a20870ee94d01822</uuid>
+                            <name>Interface {#IFNAME}({#IFALIAS}): входящие пакеты с ошибками</name>
+                            <key>net.if.in[&quot;{#IFGUID}&quot;,errors]</key>
+                            <delay>3m</delay>
+                            <history>7d</history>
+                            <description>Количество входящих пакетов с ошибками на сетевом интерфейсе.</description>
+                            <preprocessing>
+                                <step>
+                                    <type>CHANGE_PER_SECOND</type>
+                                    <parameters>
+                                        <parameter/>
+                                    </parameters>
+                                </step>
+                            </preprocessing>
+                            <tags>
+                                <tag>
+                                    <tag>component</tag>
+                                    <value>network</value>
+                                </tag>
+                                <tag>
+                                    <tag>description</tag>
+                                    <value>{#IFALIAS}</value>
+                                </tag>
+                                <tag>
+                                    <tag>interface</tag>
+                                    <value>{#IFNAME}</value>
+                                </tag>
+                            </tags>
+                        </item_prototype>
+                        <item_prototype>
+                            <uuid>82accc942f5747a2b399484466625051</uuid>
+                            <name>Interface {#IFNAME}({#IFALIAS}): Bits received (входящий)</name>
+                            <key>net.if.in[&quot;{#IFGUID}&quot;]</key>
+                            <delay>30s</delay>
+                            <history>7d</history>
+                            <trends>30d</trends>
+                            <units>bps</units>
+                            <description>Входящий трафик на сетевом интерфейсе.</description>
+                            <preprocessing>
+                                <step>
+                                    <type>CHANGE_PER_SECOND</type>
+                                    <parameters>
+                                        <parameter/>
+                                    </parameters>
+                                </step>
+                                <step>
+                                    <type>MULTIPLIER</type>
+                                    <parameters>
+                                        <parameter>8</parameter>
+                                    </parameters>
+                                </step>
+                            </preprocessing>
+                            <tags>
+                                <tag>
+                                    <tag>component</tag>
+                                    <value>network</value>
+                                </tag>
+                                <tag>
+                                    <tag>description</tag>
+                                    <value>{#IFALIAS}</value>
+                                </tag>
+                                <tag>
+                                    <tag>interface</tag>
+                                    <value>{#IFNAME}</value>
+                                </tag>
+                            </tags>
+                        </item_prototype>
+                        <item_prototype>
+                            <uuid>9ddb9aaf863a45c0affbd90e4a6fa393</uuid>
+                            <name>Interface {#IFNAME}({#IFALIAS}): отброшенных исходящих пакетов (drop)</name>
+                            <key>net.if.out[&quot;{#IFGUID}&quot;,dropped]</key>
+                            <delay>3m</delay>
+                            <history>7d</history>
+                            <description>Количество исходящих пакетов, отброшенных на сетевом интерфейсе.</description>
+                            <preprocessing>
+                                <step>
+                                    <type>CHANGE_PER_SECOND</type>
+                                    <parameters>
+                                        <parameter/>
+                                    </parameters>
+                                </step>
+                            </preprocessing>
+                            <tags>
+                                <tag>
+                                    <tag>component</tag>
+                                    <value>network</value>
+                                </tag>
+                                <tag>
+                                    <tag>description</tag>
+                                    <value>{#IFALIAS}</value>
+                                </tag>
+                                <tag>
+                                    <tag>interface</tag>
+                                    <value>{#IFNAME}</value>
+                                </tag>
+                            </tags>
+                        </item_prototype>
+                        <item_prototype>
+                            <uuid>38c8a1aa95b343e39e23e7b508521dad</uuid>
+                            <name>Interface {#IFNAME}({#IFALIAS}): исходящие пакеты с ошибками</name>
+                            <key>net.if.out[&quot;{#IFGUID}&quot;,errors]</key>
+                            <delay>3m</delay>
+                            <history>7d</history>
+                            <description>Количество исходящих пакетов с ошибками на сетевом интерфейсе.</description>
+                            <preprocessing>
+                                <step>
+                                    <type>CHANGE_PER_SECOND</type>
+                                    <parameters>
+                                        <parameter/>
+                                    </parameters>
+                                </step>
+                            </preprocessing>
+                            <tags>
+                                <tag>
+                                    <tag>component</tag>
+                                    <value>network</value>
+                                </tag>
+                                <tag>
+                                    <tag>description</tag>
+                                    <value>{#IFALIAS}</value>
+                                </tag>
+                                <tag>
+                                    <tag>interface</tag>
+                                    <value>{#IFNAME}</value>
+                                </tag>
+                            </tags>
+                        </item_prototype>
+                        <item_prototype>
+                            <uuid>3b090da19af842189bb6fa56d49ceec3</uuid>
+                            <name>Interface {#IFNAME}({#IFALIAS}): Bits sent (исходящий)</name>
+                            <key>net.if.out[&quot;{#IFGUID}&quot;]</key>
+                            <delay>30s</delay>
+                            <history>7d</history>
+                            <trends>30d</trends>
+                            <units>bps</units>
+                            <description>Исходящий трафик на сетевом интерфейсе.</description>
+                            <preprocessing>
+                                <step>
+                                    <type>CHANGE_PER_SECOND</type>
+                                    <parameters>
+                                        <parameter/>
+                                    </parameters>
+                                </step>
+                                <step>
+                                    <type>MULTIPLIER</type>
+                                    <parameters>
+                                        <parameter>8</parameter>
+                                    </parameters>
+                                </step>
+                            </preprocessing>
+                            <tags>
+                                <tag>
+                                    <tag>component</tag>
+                                    <value>network</value>
+                                </tag>
+                                <tag>
+                                    <tag>description</tag>
+                                    <value>{#IFALIAS}</value>
+                                </tag>
+                                <tag>
+                                    <tag>interface</tag>
+                                    <value>{#IFNAME}</value>
+                                </tag>
+                            </tags>
+                        </item_prototype>
+                        <item_prototype>
+                            <uuid>0445b842d1ce4c7f9fd5716c78a079c4</uuid>
+                            <name>Interface {#IFNAME}({#IFALIAS}): Speed</name>
+                            <type>DEPENDENT</type>
+                            <key>net.if.speed[&quot;{#IFGUID}&quot;]</key>
+                            <delay>0</delay>
+                            <history>7d</history>
+                            <trends>0</trends>
+                            <units>bps</units>
+                            <description>Расчетная пропускная способность сетевого интерфейса, если таковая имеется.</description>
+                            <preprocessing>
+                                <step>
+                                    <type>JSONPATH</type>
+                                    <parameters>
+                                        <parameter>$[?(@.GUID == &quot;{#IFGUID}&quot;)].Speed.first()</parameter>
+                                    </parameters>
+                                    <error_handler>CUSTOM_VALUE</error_handler>
+                                    <error_handler_params>0</error_handler_params>
+                                </step>
+                                <step>
+                                    <type>JAVASCRIPT</type>
+                                    <parameters>
+                                        <parameter>return (value=='9223372036854775807' ? 0 : value)</parameter>
+                                    </parameters>
+                                </step>
+                                <step>
+                                    <type>DISCARD_UNCHANGED_HEARTBEAT</type>
+                                    <parameters>
+                                        <parameter>1h</parameter>
+                                    </parameters>
+                                </step>
+                            </preprocessing>
+                            <master_item>
+                                <key>wmi.getall[root\cimv2,&quot;select Name,Description,NetConnectionID,Speed,AdapterTypeId,NetConnectionStatus,GUID from win32_networkadapter where PhysicalAdapter=True and NetConnectionStatus&gt;0&quot;]</key>
+                            </master_item>
+                            <tags>
+                                <tag>
+                                    <tag>component</tag>
+                                    <value>network</value>
+                                </tag>
+                                <tag>
+                                    <tag>description</tag>
+                                    <value>{#IFALIAS}</value>
+                                </tag>
+                                <tag>
+                                    <tag>interface</tag>
+                                    <value>{#IFNAME}</value>
+                                </tag>
+                            </tags>
+                        </item_prototype>
+                        <item_prototype>
+                            <uuid>c495bffb7e244e5caf5dc013d839b758</uuid>
+                            <name>Interface {#IFNAME}({#IFALIAS}): Operational status</name>
+                            <type>DEPENDENT</type>
+                            <key>net.if.status[&quot;{#IFGUID}&quot;]</key>
+                            <delay>0</delay>
+                            <history>7d</history>
+                            <trends>0</trends>
+                            <description>Статус сетевого интерфейса.</description>
+                            <valuemap>
+                                <name>Win32_NetworkAdapter::NetConnectionStatus</name>
+                            </valuemap>
+                            <preprocessing>
+                                <step>
+                                    <type>JSONPATH</type>
+                                    <parameters>
+                                        <parameter>$[?(@.GUID == &quot;{#IFGUID}&quot;)].NetConnectionStatus.first()</parameter>
+                                    </parameters>
+                                </step>
+                                <step>
+                                    <type>DISCARD_UNCHANGED_HEARTBEAT</type>
+                                    <parameters>
+                                        <parameter>1d</parameter>
+                                    </parameters>
+                                </step>
+                            </preprocessing>
+                            <master_item>
+                                <key>wmi.getall[root\cimv2,&quot;select Name,Description,NetConnectionID,Speed,AdapterTypeId,NetConnectionStatus,GUID from win32_networkadapter where PhysicalAdapter=True and NetConnectionStatus&gt;0&quot;]</key>
+                            </master_item>
+                            <tags>
+                                <tag>
+                                    <tag>component</tag>
+                                    <value>network</value>
+                                </tag>
+                                <tag>
+                                    <tag>description</tag>
+                                    <value>{#IFALIAS}</value>
+                                </tag>
+                                <tag>
+                                    <tag>interface</tag>
+                                    <value>{#IFNAME}</value>
+                                </tag>
+                            </tags>
+                            <trigger_prototypes>
+                                <trigger_prototype>
+                                    <uuid>a9b1c61ac4a6481aab93d40c6fb93462</uuid>
+                                    <expression>last(/Windows Agent Custom/net.if.status[&quot;{#IFGUID}&quot;])&lt;&gt;2 and  {$IFCONTROL:&quot;{#IFNAME}&quot;}=1</expression>
+                                    <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
+                                    <recovery_expression>last(/Windows Agent Custom/net.if.status[&quot;{#IFGUID}&quot;])=2 or {$IFCONTROL:&quot;{#IFNAME}&quot;}=0</recovery_expression>
+                                    <name>Сетевой интерфейс {#IFNAME}({#IFALIAS}): недоступен</name>
+                                    <opdata>Текущее состояние: {ITEM.LASTVALUE1}</opdata>
+                                    <priority>AVERAGE</priority>
+                                    <description>Триггер срабатывает, только если рабочий статус отличается от Connected(2).
+{$IFCONTROL:\&quot;{#IFNAME}\&quot;}=1 - пользователь может переопределить макрос Context в значение - 0. Это помечает данный интерфейс как неважный. Никакой новый триггер не будет срабатывать, если этот интерфейс не работает.
+Если триггер закрыт вручную - он не сработает при следующем опросе из-за .diff.</description>
+                                    <manual_close>YES</manual_close>
+                                    <tags>
+                                        <tag>
+                                            <tag>scope</tag>
+                                            <value>availability</value>
+                                        </tag>
+                                    </tags>
+                                </trigger_prototype>
+                            </trigger_prototypes>
+                        </item_prototype>
+                        <item_prototype>
+                            <uuid>11ce3d38745a49f58f713fcef1a913c5</uuid>
+                            <name>Interface {#IFNAME}({#IFALIAS}): Interface type</name>
+                            <type>DEPENDENT</type>
+                            <key>net.if.type[&quot;{#IFGUID}&quot;]</key>
+                            <delay>0</delay>
+                            <history>7d</history>
+                            <trends>0</trends>
+                            <description>Тип сетевого интерфейса.</description>
+                            <valuemap>
+                                <name>Win32_NetworkAdapter::AdapterTypeId</name>
+                            </valuemap>
+                            <preprocessing>
+                                <step>
+                                    <type>JSONPATH</type>
+                                    <parameters>
+                                        <parameter>$[?(@.GUID == &quot;{#IFGUID}&quot;)].AdapterTypeId.first()</parameter>
+                                    </parameters>
+                                </step>
+                                <step>
+                                    <type>DISCARD_UNCHANGED_HEARTBEAT</type>
+                                    <parameters>
+                                        <parameter>1d</parameter>
+                                    </parameters>
+                                </step>
+                            </preprocessing>
+                            <master_item>
+                                <key>wmi.getall[root\cimv2,&quot;select Name,Description,NetConnectionID,Speed,AdapterTypeId,NetConnectionStatus,GUID from win32_networkadapter where PhysicalAdapter=True and NetConnectionStatus&gt;0&quot;]</key>
+                            </master_item>
+                            <tags>
+                                <tag>
+                                    <tag>component</tag>
+                                    <value>network</value>
+                                </tag>
+                                <tag>
+                                    <tag>description</tag>
+                                    <value>{#IFALIAS}</value>
+                                </tag>
+                                <tag>
+                                    <tag>interface</tag>
+                                    <value>{#IFNAME}</value>
+                                </tag>
+                            </tags>
+                        </item_prototype>
+                    </item_prototypes>
+                    <trigger_prototypes>
+                        <trigger_prototype>
+                            <uuid>b2191521a7a54985a19740e3ee2674f2</uuid>
+                            <expression>change(/Windows Agent Custom/net.if.speed[&quot;{#IFGUID}&quot;])&lt;0 and
+last(/Windows Agent Custom/net.if.speed[&quot;{#IFGUID}&quot;])&gt;0 and
+last(/Windows Agent Custom/net.if.status[&quot;{#IFGUID}&quot;])=2</expression>
+                            <name>Изменилась скорость сетевого интерфейса {#IFNAME}({#IFALIAS})</name>
+                            <opdata>{ITEM.LASTVALUE1}</opdata>
+                            <priority>INFO</priority>
+                            <description>Это Ethernet-соединение снизило свою скорость по сравнению с известной максимальной скоростью. Это может быть признаком проблем с автосогласованием.</description>
+                            <manual_close>YES</manual_close>
+                            <dependencies>
+                                <dependency>
+                                    <name>Сетевой интерфейс {#IFNAME}({#IFALIAS}): недоступен</name>
+                                    <expression>last(/Windows Agent Custom/net.if.status[&quot;{#IFGUID}&quot;])&lt;&gt;2 and  {$IFCONTROL:&quot;{#IFNAME}&quot;}=1</expression>
+                                    <recovery_expression>last(/Windows Agent Custom/net.if.status[&quot;{#IFGUID}&quot;])=2 or {$IFCONTROL:&quot;{#IFNAME}&quot;}=0</recovery_expression>
+                                </dependency>
+                            </dependencies>
+                            <tags>
+                                <tag>
+                                    <tag>scope</tag>
+                                    <value>capacity</value>
+                                </tag>
+                            </tags>
+                        </trigger_prototype>
+                        <trigger_prototype>
+                            <uuid>c93048183c3942808c60d6dd61963bc0</uuid>
+                            <expression>(avg(/Windows Agent Custom/net.if.in[&quot;{#IFGUID}&quot;],15m)&gt;({$IF.UTIL.MAX:&quot;{#IFNAME}&quot;}/100)*last(/Windows Agent Custom/net.if.speed[&quot;{#IFGUID}&quot;]) or
+avg(/Windows Agent Custom/net.if.out[&quot;{#IFGUID}&quot;],15m)&gt;({$IF.UTIL.MAX:&quot;{#IFNAME}&quot;}/100)*last(/Windows Agent Custom/net.if.speed[&quot;{#IFGUID}&quot;])) and
+last(/Windows Agent Custom/net.if.speed[&quot;{#IFGUID}&quot;])&gt;0</expression>
+                            <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
+                            <recovery_expression>avg(/Windows Agent Custom/net.if.in[&quot;{#IFGUID}&quot;],15m)&lt;(({$IF.UTIL.MAX:&quot;{#IFNAME}&quot;}-3)/100)*last(/Windows Agent Custom/net.if.speed[&quot;{#IFGUID}&quot;]) and
+avg(/Windows Agent Custom/net.if.out[&quot;{#IFGUID}&quot;],15m)&lt;(({$IF.UTIL.MAX:&quot;{#IFNAME}&quot;}-3)/100)*last(/Windows Agent Custom/net.if.speed[&quot;{#IFGUID}&quot;])</recovery_expression>
+                            <name>Сетевой интерфейс {#IFNAME}({#IFALIAS}): высокая пропускная способность</name>
+                            <event_name>Interface {#IFNAME}({#IFALIAS}): High bandwidth usage (&gt;{$IF.UTIL.MAX:&quot;{#IFNAME}&quot;}%)</event_name>
+                            <opdata>In: {ITEM.LASTVALUE1}, out: {ITEM.LASTVALUE3}, speed: {ITEM.LASTVALUE2}</opdata>
+                            <priority>WARNING</priority>
+                            <description>Использование сетевого интерфейса близко к его расчетной максимальной пропускной способности.</description>
+                            <manual_close>YES</manual_close>
+                            <dependencies>
+                                <dependency>
+                                    <name>Сетевой интерфейс {#IFNAME}({#IFALIAS}): недоступен</name>
+                                    <expression>last(/Windows Agent Custom/net.if.status[&quot;{#IFGUID}&quot;])&lt;&gt;2 and  {$IFCONTROL:&quot;{#IFNAME}&quot;}=1</expression>
+                                    <recovery_expression>last(/Windows Agent Custom/net.if.status[&quot;{#IFGUID}&quot;])=2 or {$IFCONTROL:&quot;{#IFNAME}&quot;}=0</recovery_expression>
+                                </dependency>
+                            </dependencies>
+                            <tags>
+                                <tag>
+                                    <tag>scope</tag>
+                                    <value>performance</value>
+                                </tag>
+                            </tags>
+                        </trigger_prototype>
+                        <trigger_prototype>
+                            <uuid>a4fa6e161bb64b98b25b1a2a501a83f4</uuid>
+                            <expression>min(/Windows Agent Custom/net.if.in[&quot;{#IFGUID}&quot;,errors],5m)&gt;{$IF.ERRORS.WARN:&quot;{#IFNAME}&quot;}
+or min(/Windows Agent Custom/net.if.out[&quot;{#IFGUID}&quot;,errors],5m)&gt;{$IF.ERRORS.WARN:&quot;{#IFNAME}&quot;}</expression>
+                            <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
+                            <recovery_expression>max(/Windows Agent Custom/net.if.in[&quot;{#IFGUID}&quot;,errors],5m)&lt;{$IF.ERRORS.WARN:&quot;{#IFNAME}&quot;}*0.8
+and max(/Windows Agent Custom/net.if.out[&quot;{#IFGUID}&quot;,errors],5m)&lt;{$IF.ERRORS.WARN:&quot;{#IFNAME}&quot;}*0.8</recovery_expression>
+                            <name>Сетевой интерфейс {#IFNAME}({#IFALIAS}): ошибки пакетов выше {$IF.ERRORS.WARN:&quot;{#IFNAME}&quot;} в течении 5 минут</name>
+                            <opdata>errors in: {ITEM.LASTVALUE1}, errors out: {ITEM.LASTVALUE2}</opdata>
+                            <priority>WARNING</priority>
+                            <description>Восстанавливается при превышении 80% порога {$IF.ERRORS.WARN:&quot;{#IFNAME}&quot;}.</description>
+                            <manual_close>YES</manual_close>
+                            <dependencies>
+                                <dependency>
+                                    <name>Сетевой интерфейс {#IFNAME}({#IFALIAS}): недоступен</name>
+                                    <expression>last(/Windows Agent Custom/net.if.status[&quot;{#IFGUID}&quot;])&lt;&gt;2 and  {$IFCONTROL:&quot;{#IFNAME}&quot;}=1</expression>
+                                    <recovery_expression>last(/Windows Agent Custom/net.if.status[&quot;{#IFGUID}&quot;])=2 or {$IFCONTROL:&quot;{#IFNAME}&quot;}=0</recovery_expression>
+                                </dependency>
+                            </dependencies>
+                            <tags>
+                                <tag>
+                                    <tag>scope</tag>
+                                    <value>availability</value>
+                                </tag>
+                            </tags>
+                        </trigger_prototype>
+                    </trigger_prototypes>
+                    <graph_prototypes>
+                        <graph_prototype>
+                            <uuid>5cbfad75590746718cf4eabbeeea43f3</uuid>
+                            <name>Interface {#IFNAME}({#IFALIAS}): ошибки и потери пакетов</name>
+                            <graph_items>
+                                <graph_item>
+                                    <color>F63100</color>
+                                    <yaxisside>RIGHT</yaxisside>
+                                    <item>
+                                        <host>Windows Agent Custom</host>
+                                        <key>net.if.out[&quot;{#IFGUID}&quot;,errors]</key>
+                                    </item>
+                                </graph_item>
+                                <graph_item>
+                                    <sortorder>1</sortorder>
+                                    <color>FF0080</color>
+                                    <yaxisside>RIGHT</yaxisside>
+                                    <item>
+                                        <host>Windows Agent Custom</host>
+                                        <key>net.if.in[&quot;{#IFGUID}&quot;,errors]</key>
+                                    </item>
+                                </graph_item>
+                                <graph_item>
+                                    <sortorder>2</sortorder>
+                                    <color>0040FF</color>
+                                    <yaxisside>RIGHT</yaxisside>
+                                    <item>
+                                        <host>Windows Agent Custom</host>
+                                        <key>net.if.out[&quot;{#IFGUID}&quot;,dropped]</key>
+                                    </item>
+                                </graph_item>
+                                <graph_item>
+                                    <sortorder>3</sortorder>
+                                    <color>00FFFF</color>
+                                    <yaxisside>RIGHT</yaxisside>
+                                    <item>
+                                        <host>Windows Agent Custom</host>
+                                        <key>net.if.in[&quot;{#IFGUID}&quot;,dropped]</key>
+                                    </item>
+                                </graph_item>
+                            </graph_items>
+                        </graph_prototype>
+                        <graph_prototype>
+                            <uuid>59e9c744c0454023a36ecc7d95f4a9ec</uuid>
+                            <name>Interface {#IFNAME}({#IFALIAS}): сетевой трафик</name>
+                            <graph_items>
+                                <graph_item>
+                                    <color>1A7C11</color>
+                                    <calc_fnc>ALL</calc_fnc>
+                                    <item>
+                                        <host>Windows Agent Custom</host>
+                                        <key>net.if.in[&quot;{#IFGUID}&quot;]</key>
+                                    </item>
+                                </graph_item>
+                                <graph_item>
+                                    <sortorder>1</sortorder>
+                                    <color>FFFF00</color>
+                                    <calc_fnc>ALL</calc_fnc>
+                                    <item>
+                                        <host>Windows Agent Custom</host>
+                                        <key>net.if.out[&quot;{#IFGUID}&quot;]</key>
+                                    </item>
+                                </graph_item>
+                            </graph_items>
+                        </graph_prototype>
+                    </graph_prototypes>
+                    <master_item>
+                        <key>wmi.getall[root\cimv2,&quot;select Name,Description,NetConnectionID,Speed,AdapterTypeId,NetConnectionStatus,GUID from win32_networkadapter where PhysicalAdapter=True and NetConnectionStatus&gt;0&quot;]</key>
+                    </master_item>
+                    <preprocessing>
+                        <step>
+                            <type>JAVASCRIPT</type>
+                            <parameters>
+                                <parameter>output = JSON.parse(value).map(function(net){
+    return {
+        &quot;{#IFNAME}&quot;: net.Name,
+        &quot;{#IFDESCR}&quot;: net.Description,
+        &quot;{#IFALIAS}&quot;: net.NetConnectionID,
+        &quot;{#IFGUID}&quot;: net.GUID
+    }})
+return JSON.stringify({&quot;data&quot;: output})</parameter>
+                            </parameters>
+                        </step>
+                        <step>
+                            <type>DISCARD_UNCHANGED_HEARTBEAT</type>
+                            <parameters>
+                                <parameter>1h</parameter>
+                            </parameters>
+                        </step>
+                    </preprocessing>
+                </discovery_rule>
+                <discovery_rule>
+                    <uuid>8f155ebc6fd045b3b7548010af1a73c7</uuid>
+                    <name>Physical disks discovery</name>
+                    <key>perf_instance_en.discovery[PhysicalDisk]</key>
+                    <delay>1h</delay>
+                    <filter>
+                        <evaltype>AND</evaltype>
+                        <conditions>
+                            <condition>
+                                <macro>{#DEVNAME}</macro>
+                                <value>{$VFS.DEV.DEVNAME.MATCHES}</value>
+                                <formulaid>A</formulaid>
+                            </condition>
+                            <condition>
+                                <macro>{#DEVNAME}</macro>
+                                <value>{$VFS.DEV.DEVNAME.NOT_MATCHES}</value>
+                                <operator>NOT_MATCHES_REGEX</operator>
+                                <formulaid>B</formulaid>
+                            </condition>
+                        </conditions>
+                    </filter>
+                    <description>Discovery of installed physical disks.</description>
+                    <item_prototypes>
+                        <item_prototype>
+                            <uuid>821f46bbf9d7432e9ea0d5f93a868269</uuid>
+                            <name>{#DEVNAME}: Disk Time Util</name>
+                            <key>perf_counter_en[&quot;\PhysicalDisk({#DEVNAME})\% Idle Time&quot;,60]</key>
+                            <delay>10s</delay>
+                            <history>7d</history>
+                            <trends>30d</trends>
+                            <value_type>FLOAT</value_type>
+                            <units>%</units>
+                            <description>Этот пункт представляет собой процент времени, в течение которого выбранный дисковый накопитель был занят обслуживанием запросов на чтение или запись, исходя из времени простоя (деление на Idle Time).</description>
+                            <preprocessing>
+                                <step>
+                                    <type>JAVASCRIPT</type>
+                                    <parameters>
+                                        <parameter>return (100 - value)</parameter>
+                                    </parameters>
+                                </step>
+                            </preprocessing>
+                            <tags>
+                                <tag>
+                                    <tag>component</tag>
+                                    <value>storage</value>
+                                </tag>
+                                <tag>
+                                    <tag>disk</tag>
+                                    <value>{#DEVNAME}</value>
+                                </tag>
+                            </tags>
+                            <trigger_prototypes>
+                                <trigger_prototype>
+                                    <uuid>4777fa000fa9460baab1fd7bc7e40604</uuid>
+                                    <expression>min(/Windows Agent Custom/perf_counter_en[&quot;\PhysicalDisk({#DEVNAME})\% Idle Time&quot;,60],15m)&gt;{$VFS.DEV.UTIL.MAX.WARN}</expression>
+                                    <name>{#DEVNAME}: Загрузка диска выше {$VFS.DEV.UTIL.MAX.WARN} в течении 15 минут</name>
+                                    <opdata>Текущее значение: {ITEM.LASTVALUE1}</opdata>
+                                    <priority>HIGH</priority>
+                                    <manual_close>YES</manual_close>
+                                    <tags>
+                                        <tag>
+                                            <tag>scope</tag>
+                                            <value>performance</value>
+                                        </tag>
+                                    </tags>
+                                </trigger_prototype>
+                            </trigger_prototypes>
+                        </item_prototype>
+                        <item_prototype>
+                            <uuid>77e33448596a498ba211d23a1977e9ca</uuid>
+                            <name>{#DEVNAME}: Avg. Disk Read Queue Length (средняя длина очереди диска на чтение)</name>
+                            <key>perf_counter_en[&quot;\PhysicalDisk({#DEVNAME})\Avg. Disk Read Queue Length&quot;,60]</key>
+                            <delay>10s</delay>
+                            <history>7d</history>
+                            <trends>30d</trends>
+                            <value_type>FLOAT</value_type>
+                            <description>Средняя очередь на чтение с диска</description>
+                            <tags>
+                                <tag>
+                                    <tag>component</tag>
+                                    <value>storage</value>
+                                </tag>
+                                <tag>
+                                    <tag>disk</tag>
+                                    <value>{#DEVNAME}</value>
+                                </tag>
+                            </tags>
+                            <trigger_prototypes>
+                                <trigger_prototype>
+                                    <uuid>74492cd1a83e4dbb9861b3a60e8b9ec0</uuid>
+                                    <expression>min(/Windows Agent Custom/perf_counter_en[&quot;\PhysicalDisk({#DEVNAME})\Avg. Disk Read Queue Length&quot;,60],15m) &gt; 10</expression>
+                                    <name>{#DEVNAME}: Очередь чтения выше 10 в течении 15 минут</name>
+                                    <opdata>Текущее значение: {ITEM.LASTVALUE1}</opdata>
+                                    <priority>AVERAGE</priority>
+                                    <manual_close>YES</manual_close>
+                                    <tags>
+                                        <tag>
+                                            <tag>scope</tag>
+                                            <value>performance</value>
+                                        </tag>
+                                    </tags>
+                                </trigger_prototype>
+                            </trigger_prototypes>
+                        </item_prototype>
+                        <item_prototype>
+                            <uuid>7d91ed70bc3b4ef2a7991b3a5ba3bde4</uuid>
+                            <name>{#DEVNAME}: Avg. Disk sec/Read (среднее время задержки обращения чтения данных с диска)</name>
+                            <key>perf_counter_en[&quot;\PhysicalDisk({#DEVNAME})\Avg. Disk sec/Read&quot;,60]</key>
+                            <delay>10s</delay>
+                            <history>7d</history>
+                            <trends>30d</trends>
+                            <value_type>FLOAT</value_type>
+                            <units>s</units>
+                            <description>Avg. Disk sec/Read - среднее время обращения на чтения данных с диска в секундах. Среднее значение счетчика производительности Avg. Disk sec/Read не должно превышать 10 миллисекунд (0,01 сек). Максимальное значение счетчика производительности Avg. Disk sec/Read не должно превышать 50 миллисекунд. 1 сек. = 1000 мс.</description>
+                            <tags>
+                                <tag>
+                                    <tag>component</tag>
+                                    <value>storage</value>
+                                </tag>
+                                <tag>
+                                    <tag>disk</tag>
+                                    <value>{#DEVNAME}</value>
+                                </tag>
+                            </tags>
+                            <trigger_prototypes>
+                                <trigger_prototype>
+                                    <uuid>85a8c002b3d84121ad2e73c8aced0987</uuid>
+                                    <expression>min(/Windows Agent Custom/perf_counter_en[&quot;\PhysicalDisk({#DEVNAME})\Avg. Disk sec/Read&quot;,60],15m) &gt; {$VFS.DEV.READ.AWAIT.WARN:&quot;{#DEVNAME}&quot;}</expression>
+                                    <name>{#DEVNAME}: Задержка чтения больше {$VFS.DEV.READ.AWAIT.WARN} мс в течении 15 минут</name>
+                                    <opdata>Текущее значение: {ITEM.LASTVALUE1}</opdata>
+                                    <priority>HIGH</priority>
+                                    <manual_close>YES</manual_close>
+                                    <tags>
+                                        <tag>
+                                            <tag>scope</tag>
+                                            <value>performance</value>
+                                        </tag>
+                                    </tags>
+                                </trigger_prototype>
+                            </trigger_prototypes>
+                        </item_prototype>
+                        <item_prototype>
+                            <uuid>ad32cf85df71486b89ab3f8b8e0b8a19</uuid>
+                            <name>{#DEVNAME}: Avg. Disk sec/Transfer (среднее время задержки обращений к диску в секундах)</name>
+                            <key>perf_counter_en[&quot;\PhysicalDisk({#DEVNAME})\Avg. Disk sec/Transfer&quot;,60]</key>
+                            <delay>10s</delay>
+                            <history>7d</history>
+                            <trends>30d</trends>
+                            <value_type>FLOAT</value_type>
+                            <description>Avg. Disk sec/Transfer - среднее время задержки обращения к диску в секундах, требуемое для выполнения диском одной операции чтения или записи. Сумма значений Avg. Disk sec/Read (время на выполнение операции чтения) и Avg. Disk sec/Write (время на выполнение операции записи). Для высоконагруженых систем, таких как сервера БД, значение Avg. Disk sec/Transfer не должно превышать 0,1, для рядовых серверов допустимо значение 0,25.</description>
+                            <tags>
+                                <tag>
+                                    <tag>component</tag>
+                                    <value>storage</value>
+                                </tag>
+                                <tag>
+                                    <tag>disk</tag>
+                                    <value>{#DEVNAME}</value>
+                                </tag>
+                            </tags>
+                            <trigger_prototypes>
+                                <trigger_prototype>
+                                    <uuid>bb6f493caa7349c49828cb1d78b446b6</uuid>
+                                    <expression>min(/Windows Agent Custom/perf_counter_en[&quot;\PhysicalDisk({#DEVNAME})\Avg. Disk sec/Transfer&quot;,60],15m) &gt; {$VFS.DEV.TRANSFER.AWAIT.WARN:&quot;{#DEVNAME}&quot;}</expression>
+                                    <name>{#DEVNAME}: Задержка обращений к диску выше {$VFS.DEV.TRANSFER.AWAIT.WARN} мс в течении 15 минут</name>
+                                    <opdata>Текущее значение: {ITEM.LASTVALUE1}</opdata>
+                                    <priority>DISASTER</priority>
+                                    <description>Добавлено</description>
+                                    <manual_close>YES</manual_close>
+                                    <tags>
+                                        <tag>
+                                            <tag>scope</tag>
+                                            <value>performance</value>
+                                        </tag>
+                                    </tags>
+                                </trigger_prototype>
+                            </trigger_prototypes>
+                        </item_prototype>
+                        <item_prototype>
+                            <uuid>898784d050664f8eaf197ebebc16077e</uuid>
+                            <name>{#DEVNAME}: Avg. Disk sec/Write (среднее время задержки обращения записи данных на диск)</name>
+                            <key>perf_counter_en[&quot;\PhysicalDisk({#DEVNAME})\Avg. Disk sec/Write&quot;,60]</key>
+                            <delay>10s</delay>
+                            <history>7d</history>
+                            <trends>30d</trends>
+                            <value_type>FLOAT</value_type>
+                            <units>s</units>
+                            <description>Avg. Disk sec/Write - среднее время обращения записи данных на диск в секундах.</description>
+                            <tags>
+                                <tag>
+                                    <tag>component</tag>
+                                    <value>storage</value>
+                                </tag>
+                                <tag>
+                                    <tag>disk</tag>
+                                    <value>{#DEVNAME}</value>
+                                </tag>
+                            </tags>
+                            <trigger_prototypes>
+                                <trigger_prototype>
+                                    <uuid>db6809fd85e241948fb5ef76cb7cc17b</uuid>
+                                    <expression>min(/Windows Agent Custom/perf_counter_en[&quot;\PhysicalDisk({#DEVNAME})\Avg. Disk sec/Write&quot;,60],15m) &gt; {$VFS.DEV.WRITE.AWAIT.WARN:&quot;{#DEVNAME}&quot;}</expression>
+                                    <name>{#DEVNAME}: Задержка записи больше {$VFS.DEV.WRITE.AWAIT.WARN} мс в течении 15 минут</name>
+                                    <opdata>Текущее значение: {ITEM.LASTVALUE1}</opdata>
+                                    <priority>HIGH</priority>
+                                    <manual_close>YES</manual_close>
+                                    <tags>
+                                        <tag>
+                                            <tag>scope</tag>
+                                            <value>performance</value>
+                                        </tag>
+                                    </tags>
+                                </trigger_prototype>
+                            </trigger_prototypes>
+                        </item_prototype>
+                        <item_prototype>
+                            <uuid>71a2c065efaa437fb7296972f516bd82</uuid>
+                            <name>{#DEVNAME}: Avg. Disk Write Queue Length (средняя длина очереди диска на запись)</name>
+                            <key>perf_counter_en[&quot;\PhysicalDisk({#DEVNAME})\Avg. Disk Write Queue Length&quot;,60]</key>
+                            <delay>10s</delay>
+                            <history>7d</history>
+                            <trends>30d</trends>
+                            <value_type>FLOAT</value_type>
+                            <description>Средняя очередь записи на диск</description>
+                            <tags>
+                                <tag>
+                                    <tag>component</tag>
+                                    <value>storage</value>
+                                </tag>
+                                <tag>
+                                    <tag>disk</tag>
+                                    <value>{#DEVNAME}</value>
+                                </tag>
+                            </tags>
+                            <trigger_prototypes>
+                                <trigger_prototype>
+                                    <uuid>6d38896c9b9f44faa29a092f7bc4ef31</uuid>
+                                    <expression>min(/Windows Agent Custom/perf_counter_en[&quot;\PhysicalDisk({#DEVNAME})\Avg. Disk Write Queue Length&quot;,60],15m) &gt; 10</expression>
+                                    <name>{#DEVNAME}: Очередь записи выше 10 в течении 15 минут</name>
+                                    <opdata>Текущее значение: {ITEM.LASTVALUE1}</opdata>
+                                    <priority>AVERAGE</priority>
+                                    <manual_close>YES</manual_close>
+                                    <tags>
+                                        <tag>
+                                            <tag>scope</tag>
+                                            <value>performance</value>
+                                        </tag>
+                                    </tags>
+                                </trigger_prototype>
+                            </trigger_prototypes>
+                        </item_prototype>
+                        <item_prototype>
+                            <uuid>b49884669dbf43cc95ea3d27fb23698c</uuid>
+                            <name>{#DEVNAME}: Current Disk Queue Length (текущая длина очереди запросов к диску)</name>
+                            <key>perf_counter_en[&quot;\PhysicalDisk({#DEVNAME})\Current Disk Queue Length&quot;,60]</key>
+                            <delay>10s</delay>
+                            <history>7d</history>
+                            <trends>30d</trends>
+                            <value_type>FLOAT</value_type>
+                            <description>Current Disk Queue Length - текущая длина очереди запросов к диску. Показывает количество запросов, ожидающих обработки в данный конкретный момент.</description>
+                            <tags>
+                                <tag>
+                                    <tag>component</tag>
+                                    <value>storage</value>
+                                </tag>
+                                <tag>
+                                    <tag>disk</tag>
+                                    <value>{#DEVNAME}</value>
+                                </tag>
+                            </tags>
+                            <trigger_prototypes>
+                                <trigger_prototype>
+                                    <uuid>408d02423e0946398bd705539c7df197</uuid>
+                                    <expression>min(/Windows Agent Custom/perf_counter_en[&quot;\PhysicalDisk({#DEVNAME})\Current Disk Queue Length&quot;,60],15m) &gt; 15</expression>
+                                    <name>{#DEVNAME}: Очередь запросов к диску выше 15 в течении 15 минут</name>
+                                    <opdata>Текущее значение: {ITEM.LASTVALUE1}</opdata>
+                                    <priority>AVERAGE</priority>
+                                    <manual_close>YES</manual_close>
+                                    <tags>
+                                        <tag>
+                                            <tag>scope</tag>
+                                            <value>performance</value>
+                                        </tag>
+                                    </tags>
+                                </trigger_prototype>
+                            </trigger_prototypes>
+                        </item_prototype>
+                        <item_prototype>
+                            <uuid>390c6e4f2c134ae2939810892eefd6f7</uuid>
+                            <name>{#DEVNAME}: Disk Reads/sec (IOPS количество обращений чтения в секунду)</name>
+                            <key>perf_counter_en[&quot;\PhysicalDisk({#DEVNAME})\Disk Reads/sec&quot;,60]</key>
+                            <delay>10s</delay>
+                            <history>7d</history>
+                            <trends>30d</trends>
+                            <value_type>FLOAT</value_type>
+                            <units>!r/s</units>
+                            <description>Disk Reads/sec — количество обращений чтения в секунду. В нормальном режиме интенсивность обращений не должна превышать их индивидуальным пределам, умноженным на количество дисков в массиве. В режиме чтения для различных типов RAID могут учитываться не все диски, например в RAID-6 в массиве из шести дисков скорость чтения равна скорости чтения с четырех дисков (с оставшихся двух считываются контрольные суммы).</description>
+                            <tags>
+                                <tag>
+                                    <tag>component</tag>
+                                    <value>storage</value>
+                                </tag>
+                                <tag>
+                                    <tag>disk</tag>
+                                    <value>{#DEVNAME}</value>
+                                </tag>
+                            </tags>
+                            <trigger_prototypes>
+                                <trigger_prototype>
+                                    <uuid>a3ab059432a8487d927e4300aca90903</uuid>
+                                    <expression>min(/Windows Agent Custom/perf_counter_en[&quot;\PhysicalDisk({#DEVNAME})\Disk Reads/sec&quot;,60],15m) &gt; 1000</expression>
+                                    <name>{#DEVNAME}: IOPS reads выше 1000 в течении 15 минут</name>
+                                    <opdata>Текущее значение: {ITEM.LASTVALUE1}</opdata>
+                                    <priority>WARNING</priority>
+                                    <description>Операций чтения с диска в секунду</description>
+                                    <manual_close>YES</manual_close>
+                                    <tags>
+                                        <tag>
+                                            <tag>scope</tag>
+                                            <value>performance</value>
+                                        </tag>
+                                    </tags>
+                                </trigger_prototype>
+                            </trigger_prototypes>
+                        </item_prototype>
+                        <item_prototype>
+                            <uuid>2aed72661c0048e18a93e50dc9ce51c8</uuid>
+                            <name>{#DEVNAME}: Disk Transfers/sec (IOPS - общее количество операций ввода\вывода, завершенных диском в течении 1 секунды)</name>
+                            <key>perf_counter_en[&quot;\PhysicalDisk({#DEVNAME})\Disk Transfers/sec&quot;,60]</key>
+                            <delay>10s</delay>
+                            <history>7d</history>
+                            <trends>30d</trends>
+                            <value_type>FLOAT</value_type>
+                            <description>Disk Transfers/sec - общее количество операций ввода\вывода, обработанных (завершенных) диском в течении 1 секунды (Input/Output Operations Per Second, IOPS). Этот счетчик позволяет примерно оценить, насколько нагрузка на диски близка к предельной (зная этот показатель). Для дисков, работающих в нормальном режиме, можно ориентироваться на следующие значения: 80-160 IOPS для одиночного жесткого диска SATA или SAS, 1800-5000 IOPS для одиночного SSD диска.</description>
+                            <tags>
+                                <tag>
+                                    <tag>component</tag>
+                                    <value>storage</value>
+                                </tag>
+                                <tag>
+                                    <tag>disk</tag>
+                                    <value>{#DEVNAME}</value>
+                                </tag>
+                            </tags>
+                            <trigger_prototypes>
+                                <trigger_prototype>
+                                    <uuid>9b3c197e1d014175aff73f916997c173</uuid>
+                                    <expression>min(/Windows Agent Custom/perf_counter_en[&quot;\PhysicalDisk({#DEVNAME})\Disk Transfers/sec&quot;,60],15m) &gt; 2000</expression>
+                                    <name>{#DEVNAME}: IOPS выше 2000 в течении 15 минут</name>
+                                    <opdata>Текущее значение: {ITEM.LASTVALUE1}</opdata>
+                                    <priority>WARNING</priority>
+                                    <manual_close>YES</manual_close>
+                                    <tags>
+                                        <tag>
+                                            <tag>scope</tag>
+                                            <value>performance</value>
+                                        </tag>
+                                    </tags>
+                                </trigger_prototype>
+                            </trigger_prototypes>
+                        </item_prototype>
+                        <item_prototype>
+                            <uuid>6353d621a9c4415c94247208fc996075</uuid>
+                            <name>{#DEVNAME}: Disk Writes/sec (IOPS количество обращений записи в секунду)</name>
+                            <key>perf_counter_en[&quot;\PhysicalDisk({#DEVNAME})\Disk Writes/sec&quot;,60]</key>
+                            <delay>10s</delay>
+                            <history>7d</history>
+                            <trends>30d</trends>
+                            <value_type>FLOAT</value_type>
+                            <units>!w/s</units>
+                            <description>Disk Writes/sec — количество обращений записи в секунду, то есть частота выполнения операций записи на диск.</description>
+                            <tags>
+                                <tag>
+                                    <tag>component</tag>
+                                    <value>storage</value>
+                                </tag>
+                                <tag>
+                                    <tag>disk</tag>
+                                    <value>{#DEVNAME}</value>
+                                </tag>
+                            </tags>
+                            <trigger_prototypes>
+                                <trigger_prototype>
+                                    <uuid>8a3cf4593dff414a848bd293864dade2</uuid>
+                                    <expression>min(/Windows Agent Custom/perf_counter_en[&quot;\PhysicalDisk({#DEVNAME})\Disk Writes/sec&quot;,60],15m) &gt; 1000</expression>
+                                    <name>{#DEVNAME}: IOPS writes выше 1000 в течении 15 минут</name>
+                                    <opdata>Текущее значение: {ITEM.LASTVALUE1}</opdata>
+                                    <priority>WARNING</priority>
+                                    <description>Операция записи на диск в секунду</description>
+                                    <manual_close>YES</manual_close>
+                                    <tags>
+                                        <tag>
+                                            <tag>scope</tag>
+                                            <value>performance</value>
+                                        </tag>
+                                    </tags>
+                                </trigger_prototype>
+                            </trigger_prototypes>
+                        </item_prototype>
+                    </item_prototypes>
+                    <graph_prototypes>
+                        <graph_prototype>
+                            <uuid>ab2af653778c403dbbdcdadac8339cc7</uuid>
+                            <name>{#DEVNAME}: Disk Idle Time</name>
+                            <graph_items>
+                                <graph_item>
+                                    <color>00FF00</color>
+                                    <calc_fnc>ALL</calc_fnc>
+                                    <item>
+                                        <host>Windows Agent Custom</host>
+                                        <key>perf_counter_en[&quot;\PhysicalDisk({#DEVNAME})\% Idle Time&quot;,60]</key>
+                                    </item>
+                                </graph_item>
+                            </graph_items>
+                        </graph_prototype>
+                        <graph_prototype>
+                            <uuid>410aa91b06474fc881fc14d64f1d3ab0</uuid>
+                            <name>{#DEVNAME}: IOPS Transfers</name>
+                            <graph_items>
+                                <graph_item>
+                                    <drawtype>BOLD_LINE</drawtype>
+                                    <color>FF0000</color>
+                                    <calc_fnc>ALL</calc_fnc>
+                                    <item>
+                                        <host>Windows Agent Custom</host>
+                                        <key>perf_counter_en[&quot;\PhysicalDisk({#DEVNAME})\Disk Transfers/sec&quot;,60]</key>
+                                    </item>
+                                </graph_item>
+                            </graph_items>
+                        </graph_prototype>
+                        <graph_prototype>
+                            <uuid>339a20ba0d3f4ba4a05aee0611124819</uuid>
+                            <name>{#DEVNAME}: Количество обращений чтения и записи в секунду (IOPS)</name>
+                            <graph_items>
+                                <graph_item>
+                                    <color>FFFF00</color>
+                                    <item>
+                                        <host>Windows Agent Custom</host>
+                                        <key>perf_counter_en[&quot;\PhysicalDisk({#DEVNAME})\Disk Reads/sec&quot;,60]</key>
+                                    </item>
+                                </graph_item>
+                                <graph_item>
+                                    <sortorder>1</sortorder>
+                                    <color>FF4000</color>
+                                    <item>
+                                        <host>Windows Agent Custom</host>
+                                        <key>perf_counter_en[&quot;\PhysicalDisk({#DEVNAME})\Disk Writes/sec&quot;,60]</key>
+                                    </item>
+                                </graph_item>
+                            </graph_items>
+                        </graph_prototype>
+                        <graph_prototype>
+                            <uuid>bc71dc24634742028a5c8384dcaa0f32</uuid>
+                            <name>{#DEVNAME}: Очередь</name>
+                            <graph_items>
+                                <graph_item>
+                                    <color>FF0000</color>
+                                    <item>
+                                        <host>Windows Agent Custom</host>
+                                        <key>perf_counter_en[&quot;\PhysicalDisk({#DEVNAME})\Current Disk Queue Length&quot;,60]</key>
+                                    </item>
+                                </graph_item>
+                            </graph_items>
+                        </graph_prototype>
+                        <graph_prototype>
+                            <uuid>fa5f02da91794b57a00a288d425d7f61</uuid>
+                            <name>{#DEVNAME}: Очередь чтения и записи</name>
+                            <graph_items>
+                                <graph_item>
+                                    <color>BF00FF</color>
+                                    <calc_fnc>ALL</calc_fnc>
+                                    <item>
+                                        <host>Windows Agent Custom</host>
+                                        <key>perf_counter_en[&quot;\PhysicalDisk({#DEVNAME})\Avg. Disk Read Queue Length&quot;,60]</key>
+                                    </item>
+                                </graph_item>
+                                <graph_item>
+                                    <sortorder>1</sortorder>
+                                    <color>FFFF00</color>
+                                    <calc_fnc>ALL</calc_fnc>
+                                    <item>
+                                        <host>Windows Agent Custom</host>
+                                        <key>perf_counter_en[&quot;\PhysicalDisk({#DEVNAME})\Avg. Disk Write Queue Length&quot;,60]</key>
+                                    </item>
+                                </graph_item>
+                            </graph_items>
+                        </graph_prototype>
+                        <graph_prototype>
+                            <uuid>f54bdfb7e0c7471f80b8ca599bc4f904</uuid>
+                            <name>{#DEVNAME}: Среднее время задержки чтения и записи данных с диска в секундах</name>
+                            <graph_items>
+                                <graph_item>
+                                    <color>FFFF00</color>
+                                    <item>
+                                        <host>Windows Agent Custom</host>
+                                        <key>perf_counter_en[&quot;\PhysicalDisk({#DEVNAME})\Avg. Disk sec/Read&quot;,60]</key>
+                                    </item>
+                                </graph_item>
+                                <graph_item>
+                                    <sortorder>1</sortorder>
+                                    <color>FF4000</color>
+                                    <item>
+                                        <host>Windows Agent Custom</host>
+                                        <key>perf_counter_en[&quot;\PhysicalDisk({#DEVNAME})\Avg. Disk sec/Write&quot;,60]</key>
+                                    </item>
+                                </graph_item>
+                            </graph_items>
+                        </graph_prototype>
+                    </graph_prototypes>
+                    <preprocessing>
+                        <step>
+                            <type>STR_REPLACE</type>
+                            <parameters>
+                                <parameter>{#INSTANCE}</parameter>
+                                <parameter>{#DEVNAME}</parameter>
+                            </parameters>
+                        </step>
+                    </preprocessing>
+                </discovery_rule>
+                <discovery_rule>
+                    <uuid>c22b79b52f9148728095bda2796a753e</uuid>
+                    <name>Mounted filesystem discovery</name>
+                    <key>vfs.fs.discovery</key>
+                    <delay>1h</delay>
+                    <filter>
+                        <evaltype>AND</evaltype>
+                        <conditions>
+                            <condition>
+                                <macro>{#FSTYPE}</macro>
+                                <value>{$VFS.FS.FSTYPE.MATCHES}</value>
+                                <formulaid>E</formulaid>
+                            </condition>
+                            <condition>
+                                <macro>{#FSTYPE}</macro>
+                                <value>{$VFS.FS.FSTYPE.NOT_MATCHES}</value>
+                                <operator>NOT_MATCHES_REGEX</operator>
+                                <formulaid>F</formulaid>
+                            </condition>
+                            <condition>
+                                <macro>{#FSNAME}</macro>
+                                <value>{$VFS.FS.FSNAME.MATCHES}</value>
+                                <formulaid>C</formulaid>
+                            </condition>
+                            <condition>
+                                <macro>{#FSNAME}</macro>
+                                <value>{$VFS.FS.FSNAME.NOT_MATCHES}</value>
+                                <operator>NOT_MATCHES_REGEX</operator>
+                                <formulaid>D</formulaid>
+                            </condition>
+                            <condition>
+                                <macro>{#FSDRIVETYPE}</macro>
+                                <value>{$VFS.FS.FSDRIVETYPE.MATCHES}</value>
+                                <formulaid>A</formulaid>
+                            </condition>
+                            <condition>
+                                <macro>{#FSDRIVETYPE}</macro>
+                                <value>{$VFS.FS.FSDRIVETYPE.NOT_MATCHES}</value>
+                                <operator>NOT_MATCHES_REGEX</operator>
+                                <formulaid>B</formulaid>
+                            </condition>
+                        </conditions>
+                    </filter>
+                    <description>Обнаружение файловых систем.</description>
+                    <item_prototypes>
+                        <item_prototype>
+                            <uuid>6b53c9169c95487ea5bbe524cdf9c118</uuid>
+                            <name>{#FSLABEL}({#FSNAME}): Free space</name>
+                            <key>vfs.fs.size[{#FSNAME},free]</key>
+                            <history>7d</history>
+                            <units>B</units>
+                            <description>Полный размер раздела диска в байтах</description>
+                            <tags>
+                                <tag>
+                                    <tag>component</tag>
+                                    <value>storage</value>
+                                </tag>
+                                <tag>
+                                    <tag>filesystem</tag>
+                                    <value>{#FSNAME}</value>
+                                </tag>
+                            </tags>
+                            <trigger_prototypes>
+                                <trigger_prototype>
+                                    <uuid>900661f04b8949389019aebc5c4ed2c9</uuid>
+                                    <expression>last(/Windows Agent Custom/vfs.fs.size[{#FSNAME},free])&lt;2G</expression>
+                                    <name>({#FSNAME}): Размер диска меньше 2 Гб</name>
+                                    <opdata>Свободного места на диске: {ITEM.LASTVALUE1}</opdata>
+                                    <priority>DISASTER</priority>
+                                    <manual_close>YES</manual_close>
+                                    <tags>
+                                        <tag>
+                                            <tag>scope</tag>
+                                            <value>capacity</value>
+                                        </tag>
+                                    </tags>
+                                </trigger_prototype>
+                                <trigger_prototype>
+                                    <uuid>70cbbc1e656f4dee9295d16b78a0dd03</uuid>
+                                    <expression>last(/Windows Agent Custom/vfs.fs.size[{#FSNAME},free])&lt;5G</expression>
+                                    <name>({#FSNAME}): Размер диска меньше 5 Гб</name>
+                                    <opdata>Свободного места на диске: {ITEM.LASTVALUE1}</opdata>
+                                    <priority>HIGH</priority>
+                                    <manual_close>YES</manual_close>
+                                    <tags>
+                                        <tag>
+                                            <tag>scope</tag>
+                                            <value>capacity</value>
+                                        </tag>
+                                    </tags>
+                                </trigger_prototype>
+                                <trigger_prototype>
+                                    <uuid>4d4df7e2971e4a6f8ebdbb1b270eea67</uuid>
+                                    <expression>last(/Windows Agent Custom/vfs.fs.size[{#FSNAME},free])&lt;10G</expression>
+                                    <name>({#FSNAME}): Размер диска меньше 10 Гб</name>
+                                    <opdata>Свободного места на диске: {ITEM.LASTVALUE1}</opdata>
+                                    <priority>AVERAGE</priority>
+                                    <manual_close>YES</manual_close>
+                                    <tags>
+                                        <tag>
+                                            <tag>scope</tag>
+                                            <value>capacity</value>
+                                        </tag>
+                                    </tags>
+                                </trigger_prototype>
+                            </trigger_prototypes>
+                        </item_prototype>
+                        <item_prototype>
+                            <uuid>ac110c972c2a4cecac1b54dbe15725f2</uuid>
+                            <name>{#FSLABEL}({#FSNAME}): Space free</name>
+                            <key>vfs.fs.size[{#FSNAME},pfree]</key>
+                            <history>7d</history>
+                            <value_type>FLOAT</value_type>
+                            <units>%</units>
+                            <tags>
+                                <tag>
+                                    <tag>component</tag>
+                                    <value>storage</value>
+                                </tag>
+                                <tag>
+                                    <tag>filesystem</tag>
+                                    <value>{#FSNAME}</value>
+                                </tag>
+                            </tags>
+                        </item_prototype>
+                        <item_prototype>
+                            <uuid>7bf3bd42cdf444389e6953090900c620</uuid>
+                            <name>{#FSLABEL}({#FSNAME}): Space utilization</name>
+                            <key>vfs.fs.size[{#FSNAME},pused]</key>
+                            <history>7d</history>
+                            <value_type>FLOAT</value_type>
+                            <units>%</units>
+                            <tags>
+                                <tag>
+                                    <tag>component</tag>
+                                    <value>storage</value>
+                                </tag>
+                                <tag>
+                                    <tag>filesystem</tag>
+                                    <value>{#FSNAME}</value>
+                                </tag>
+                            </tags>
+                            <trigger_prototypes>
+                                <trigger_prototype>
+                                    <uuid>643c7d7fc29748d8874d4cdc7a16ba7b</uuid>
+                                    <expression>last(/Windows Agent Custom/vfs.fs.size[{#FSNAME},pused])&gt;95</expression>
+                                    <name>({#FSNAME}): Объем диска ниже 5%</name>
+                                    <opdata>Текущий процент используемого объем диска: {ITEM.LASTVALUE1}</opdata>
+                                    <priority>HIGH</priority>
+                                    <description>(путь до элемента данных - /шаблон/ключ) больше 95%</description>
+                                    <manual_close>YES</manual_close>
+                                    <tags>
+                                        <tag>
+                                            <tag>scope</tag>
+                                            <value>capacity</value>
+                                        </tag>
+                                    </tags>
+                                </trigger_prototype>
+                                <trigger_prototype>
+                                    <uuid>608972efb60f4e538d938b06df2f132d</uuid>
+                                    <expression>last(/Windows Agent Custom/vfs.fs.size[{#FSNAME},pused])&gt;90</expression>
+                                    <name>({#FSNAME}): Объем диска ниже 10%</name>
+                                    <opdata>Текущий процент используемого объем диска: {ITEM.LASTVALUE1}</opdata>
+                                    <priority>AVERAGE</priority>
+                                    <description>(путь до элемента данных - /шаблон/ключ) больше 90%</description>
+                                    <manual_close>YES</manual_close>
+                                    <tags>
+                                        <tag>
+                                            <tag>scope</tag>
+                                            <value>capacity</value>
+                                        </tag>
+                                    </tags>
+                                </trigger_prototype>
+                            </trigger_prototypes>
+                        </item_prototype>
+                        <item_prototype>
+                            <uuid>69378521b7e844ec89afe753a7cba30e</uuid>
+                            <name>{#FSLABEL}({#FSNAME}): Total space</name>
+                            <key>vfs.fs.size[{#FSNAME},total]</key>
+                            <history>7d</history>
+                            <units>B</units>
+                            <description>Полный размер раздела диска в байтах</description>
+                            <tags>
+                                <tag>
+                                    <tag>component</tag>
+                                    <value>storage</value>
+                                </tag>
+                                <tag>
+                                    <tag>filesystem</tag>
+                                    <value>{#FSNAME}</value>
+                                </tag>
+                            </tags>
+                        </item_prototype>
+                        <item_prototype>
+                            <uuid>a29509b4b7f24c25a768e88e0c23c154</uuid>
+                            <name>{#FSLABEL}({#FSNAME}): Used space</name>
+                            <key>vfs.fs.size[{#FSNAME},used]</key>
+                            <history>7d</history>
+                            <units>B</units>
+                            <description>Свободное место на разделе диска в байтах</description>
+                            <tags>
+                                <tag>
+                                    <tag>component</tag>
+                                    <value>storage</value>
+                                </tag>
+                                <tag>
+                                    <tag>filesystem</tag>
+                                    <value>{#FSNAME}</value>
+                                </tag>
+                            </tags>
+                        </item_prototype>
+                    </item_prototypes>
+                    <graph_prototypes>
+                        <graph_prototype>
+                            <uuid>93fa3d3291b3450c877a61676037d906</uuid>
+                            <name>Использование диска: {#FSLABEL}({#FSNAME})</name>
+                            <width>600</width>
+                            <height>340</height>
+                            <show_work_period>NO</show_work_period>
+                            <show_triggers>NO</show_triggers>
+                            <ymin_type_1>FIXED</ymin_type_1>
+                            <ymax_type_1>ITEM</ymax_type_1>
+                            <ymax_item_1>
+                                <host>Windows Agent Custom</host>
+                                <key>vfs.fs.size[{#FSNAME},total]</key>
+                            </ymax_item_1>
+                            <graph_items>
+                                <graph_item>
+                                    <drawtype>FILLED_REGION</drawtype>
+                                    <color>80FF00</color>
+                                    <calc_fnc>ALL</calc_fnc>
+                                    <item>
+                                        <host>Windows Agent Custom</host>
+                                        <key>vfs.fs.size[{#FSNAME},used]</key>
+                                    </item>
+                                </graph_item>
+                            </graph_items>
+                        </graph_prototype>
+                    </graph_prototypes>
+                </discovery_rule>
+            </discovery_rules>
+            <tags>
+                <tag>
+                    <tag>class</tag>
+                    <value>os</value>
+                </tag>
+                <tag>
+                    <tag>target</tag>
+                    <value>windows</value>
+                </tag>
+            </tags>
+            <macros>
+                <macro>
+                    <macro>{$AGENT.TIMEOUT}</macro>
+                    <value>3m</value>
+                    <description>Таймаут, по истечении которого агент считается недоступным. Работает только для агентов, достижимых с сервера Zabbix (пассивный режим).</description>
+                </macro>
+                <macro>
+                    <macro>{$CPU.INTERRUPT.CRIT.MAX}</macro>
+                    <value>5</value>
+                    <description>Порог счетчика процессорного времени аппаратных прерываний в %.</description>
+                </macro>
+                <macro>
+                    <macro>{$CPU.PRIV.CRIT.MAX}</macro>
+                    <value>20</value>
+                    <description>Порог счетчика в привилегированном режиме (нагрузки ядра ОС) времени в %.</description>
+                </macro>
+                <macro>
+                    <macro>{$CPU.QUEUE.CRIT.MAX}</macro>
+                    <value>3</value>
+                    <description>Порог счетчика длины очереди процессора.</description>
+                </macro>
+                <macro>
+                    <macro>{$CPU.UTIL.CRIT}</macro>
+                    <value>90</value>
+                    <description>Загрузка процессора в %</description>
+                </macro>
+                <macro>
+                    <macro>{$IF.ERRORS.WARN}</macro>
+                    <value>2</value>
+                </macro>
+                <macro>
+                    <macro>{$IF.UTIL.MAX}</macro>
+                    <value>90</value>
+                </macro>
+                <macro>
+                    <macro>{$IFCONTROL}</macro>
+                    <value>1</value>
+                </macro>
+                <macro>
+                    <macro>{$MEM.PAGE_SEC.CRIT.MAX}</macro>
+                    <value>1000</value>
+                    <description>Порог предупреждения для счетчика страниц оперативной памяти в секунду.</description>
+                </macro>
+                <macro>
+                    <macro>{$MEM.PAGE_TABLE_CRIT.MIN}</macro>
+                    <value>5000</value>
+                    <description>Порог предупреждения для счетчика Free System Page Table Entries.</description>
+                </macro>
+                <macro>
+                    <macro>{$MEMORY.UTIL.MAX}</macro>
+                    <value>98</value>
+                    <description>Загрузка оперативной памяти в %</description>
+                </macro>
+                <macro>
+                    <macro>{$NET.IF.IFALIAS.MATCHES}</macro>
+                    <value>.*</value>
+                    <description>Макрос используется при обнаружении сетевого интерфейса.</description>
+                </macro>
+                <macro>
+                    <macro>{$NET.IF.IFALIAS.NOT_MATCHES}</macro>
+                    <value>CHANGE_THIS</value>
+                    <description>Макрос используется при обнаружении сетевого интерфейса.</description>
+                </macro>
+                <macro>
+                    <macro>{$NET.IF.IFDESCR.MATCHES}</macro>
+                    <value>.*</value>
+                    <description>Макрос используется при обнаружении сетевого интерфейса.</description>
+                </macro>
+                <macro>
+                    <macro>{$NET.IF.IFDESCR.NOT_MATCHES}</macro>
+                    <value>CHANGE_THIS</value>
+                    <description>Макрос используется при обнаружении сетевого интерфейса.</description>
+                </macro>
+                <macro>
+                    <macro>{$NET.IF.IFNAME.MATCHES}</macro>
+                    <value>.*</value>
+                    <description>Макрос используется при обнаружении сетевого интерфейса.</description>
+                </macro>
+                <macro>
+                    <macro>{$NET.IF.IFNAME.NOT_MATCHES}</macro>
+                    <value>Miniport|Virtual|Teredo|Kernel|Loopback|Bluetooth|HTTPS|6to4|QoS|Layer</value>
+                    <description>Макрос используется при обнаружении сетевого интерфейса.</description>
+                </macro>
+                <macro>
+                    <macro>{$PROC.CRIT}</macro>
+                    <value>300</value>
+                    <description>Кол-во активных процессов</description>
+                </macro>
+                <macro>
+                    <macro>{$SERVICE.NAME.MATCHES}</macro>
+                    <value>^.*$</value>
+                    <description>Макрос используется при обнаружении службы.</description>
+                </macro>
+                <macro>
+                    <macro>{$SERVICE.NAME.NOT_MATCHES}</macro>
+                    <value>^(?:RemoteRegistry|MMCSS|gupdate|SysmonLog|clr_optimization_v.+|sppsvc|gpsvc|Pml Driver HPZ12|Net Driver HPZ12|MapsBroker|IntelAudioService|Intel\(R\) TPM Provisioning Service|dbupdate|DoSvc|CDPUserSvc_.+|WpnUserService_.+|OneSyncSvc_.+|WbioSrvc|BITS|tiledatamodelsvc|GISvc|ShellHWDetection|TrustedInstaller|TabletInputService|CDPSvc|wuauserv)$</value>
+                    <description>Макрос используется при обнаружении службы.</description>
+                </macro>
+                <macro>
+                    <macro>{$SERVICE.STARTUPNAME.MATCHES}</macro>
+                    <value>^(?:automatic|automatic delayed)$</value>
+                    <description>Макрос используется при обнаружении службы.</description>
+                </macro>
+                <macro>
+                    <macro>{$SERVICE.STARTUPNAME.NOT_MATCHES}</macro>
+                    <value>^(?:manual|disabled)$</value>
+                    <description>Макрос используется при обнаружении службы.</description>
+                </macro>
+                <macro>
+                    <macro>{$SWAP.PFREE.MIN.WARN}</macro>
+                    <value>20</value>
+                    <description>Файл подкачки</description>
+                </macro>
+                <macro>
+                    <macro>{$SYSTEM.FUZZYTIME.MAX}</macro>
+                    <value>60</value>
+                    <description>Порог разницы системного времени в секундах</description>
+                </macro>
+                <macro>
+                    <macro>{$VFS.DEV.DEVNAME.MATCHES}</macro>
+                    <value>.*</value>
+                    <description>Макрос используется при обнаружении физических дисков.</description>
+                </macro>
+                <macro>
+                    <macro>{$VFS.DEV.DEVNAME.NOT_MATCHES}</macro>
+                    <value>_Total</value>
+                    <description>Макрос используется при обнаружении физических дисков.</description>
+                </macro>
+                <macro>
+                    <macro>{$VFS.DEV.READ.AWAIT.WARN}</macro>
+                    <value>0.05</value>
+                    <description>Среднее время чтения данных с диска в секундах до срабатывания триггера.</description>
+                </macro>
+                <macro>
+                    <macro>{$VFS.DEV.TRANSFER.AWAIT.WARN}</macro>
+                    <value>0.10</value>
+                    <description>Задержка обращений к диску в секундах</description>
+                </macro>
+                <macro>
+                    <macro>{$VFS.DEV.UTIL.CRIT.WARN}</macro>
+                    <value>99</value>
+                    <description>Критическое значение использования дискового времени в %</description>
+                </macro>
+                <macro>
+                    <macro>{$VFS.DEV.UTIL.MAX.WARN}</macro>
+                    <value>95</value>
+                    <description>Порог предупреждения об использовании дискового времени в процентах.</description>
+                </macro>
+                <macro>
+                    <macro>{$VFS.DEV.WRITE.AWAIT.WARN}</macro>
+                    <value>0.05</value>
+                    <description>Среднее время записи данных с диска в секундах до срабатывания триггера.</description>
+                </macro>
+                <macro>
+                    <macro>{$VFS.FS.FREE.MIN.CRIT}</macro>
+                    <value>5G</value>
+                    <description>Критический порог свободного места на диске в ГБ</description>
+                </macro>
+                <macro>
+                    <macro>{$VFS.FS.FREE.MIN.WARN}</macro>
+                    <value>10G</value>
+                    <description>Порог предупреждения свободного места на диске в ГБ</description>
+                </macro>
+                <macro>
+                    <macro>{$VFS.FS.FSDRIVETYPE.MATCHES}</macro>
+                    <value>fixed</value>
+                    <description>Макрос используется при обнаружении файловых систем (разделов диски).</description>
+                </macro>
+                <macro>
+                    <macro>{$VFS.FS.FSDRIVETYPE.NOT_MATCHES}</macro>
+                    <value>^\s$</value>
+                    <description>Макрос используется при обнаружении файловых систем (разделов диски).</description>
+                </macro>
+                <macro>
+                    <macro>{$VFS.FS.FSNAME.MATCHES}</macro>
+                    <value>.*</value>
+                    <description>Макрос используется при обнаружении файловых систем (разделов диски).</description>
+                </macro>
+                <macro>
+                    <macro>{$VFS.FS.FSNAME.NOT_MATCHES}</macro>
+                    <value>^(?:/dev|/sys|/run|/proc|.+/shm$)</value>
+                    <description>Макрос используется при обнаружении файловых систем (разделов диски).</description>
+                </macro>
+                <macro>
+                    <macro>{$VFS.FS.FSTYPE.MATCHES}</macro>
+                    <value>.*</value>
+                    <description>Макрос используется при обнаружении файловых систем (разделов диски).</description>
+                </macro>
+                <macro>
+                    <macro>{$VFS.FS.FSTYPE.NOT_MATCHES}</macro>
+                    <value>^\s$</value>
+                    <description>Макрос используется при обнаружении файловых систем (разделов диски).</description>
+                </macro>
+                <macro>
+                    <macro>{$VFS.FS.PUSED.MAX.CRIT}</macro>
+                    <value>95</value>
+                    <description>Критический порог свободного места на диске в %</description>
+                </macro>
+                <macro>
+                    <macro>{$VFS.FS.PUSED.MAX.WARN}</macro>
+                    <value>90</value>
+                    <description>Порог предупреждения свободного места на диске в %</description>
+                </macro>
+            </macros>
+            <dashboards>
+                <dashboard>
+                    <uuid>49212562a208434d9766aa82240230fd</uuid>
+                    <name>Network interfaces</name>
+                    <pages>
+                        <page>
+                            <widgets>
+                                <widget>
+                                    <type>GRAPH_PROTOTYPE</type>
+                                    <width>24</width>
+                                    <height>5</height>
+                                    <fields>
+                                        <field>
+                                            <type>INTEGER</type>
+                                            <name>source_type</name>
+                                            <value>2</value>
+                                        </field>
+                                        <field>
+                                            <type>INTEGER</type>
+                                            <name>columns</name>
+                                            <value>1</value>
+                                        </field>
+                                        <field>
+                                            <type>INTEGER</type>
+                                            <name>rows</name>
+                                            <value>1</value>
+                                        </field>
+                                        <field>
+                                            <type>GRAPH_PROTOTYPE</type>
+                                            <name>graphid</name>
+                                            <value>
+                                                <host>Windows Agent Custom</host>
+                                                <name>Interface {#IFNAME}({#IFALIAS}): ошибки и потери пакетов</name>
+                                            </value>
+                                        </field>
+                                    </fields>
+                                </widget>
+                            </widgets>
+                        </page>
+                    </pages>
+                </dashboard>
+                <dashboard>
+                    <uuid>5f494fac9dc94bf3827b67ea212240f2</uuid>
+                    <name>System performance</name>
+                    <pages>
+                        <page>
+                            <widgets>
+                                <widget>
+                                    <type>GRAPH_CLASSIC</type>
+                                    <width>12</width>
+                                    <height>5</height>
+                                    <fields>
+                                        <field>
+                                            <type>INTEGER</type>
+                                            <name>source_type</name>
+                                            <value>0</value>
+                                        </field>
+                                        <field>
+                                            <type>GRAPH</type>
+                                            <name>graphid</name>
+                                            <value>
+                                                <host>Windows Agent Custom</host>
+                                                <name>CPU</name>
+                                            </value>
+                                        </field>
+                                    </fields>
+                                </widget>
+                                <widget>
+                                    <type>GRAPH_CLASSIC</type>
+                                    <x>12</x>
+                                    <width>12</width>
+                                    <height>5</height>
+                                    <fields>
+                                        <field>
+                                            <type>INTEGER</type>
+                                            <name>source_type</name>
+                                            <value>1</value>
+                                        </field>
+                                        <field>
+                                            <type>ITEM</type>
+                                            <name>itemid</name>
+                                            <value>
+                                                <host>Windows Agent Custom</host>
+                                                <key>perf_counter_en[&quot;\System\Processor Queue Length&quot;]</key>
+                                            </value>
+                                        </field>
+                                    </fields>
+                                </widget>
+                                <widget>
+                                    <type>GRAPH_CLASSIC</type>
+                                    <y>5</y>
+                                    <width>12</width>
+                                    <height>5</height>
+                                    <fields>
+                                        <field>
+                                            <type>INTEGER</type>
+                                            <name>source_type</name>
+                                            <value>0</value>
+                                        </field>
+                                        <field>
+                                            <type>GRAPH</type>
+                                            <name>graphid</name>
+                                            <value>
+                                                <host>Windows Agent Custom</host>
+                                                <name>Memory pages</name>
+                                            </value>
+                                        </field>
+                                    </fields>
+                                </widget>
+                                <widget>
+                                    <type>GRAPH_CLASSIC</type>
+                                    <x>12</x>
+                                    <y>5</y>
+                                    <width>12</width>
+                                    <height>5</height>
+                                    <fields>
+                                        <field>
+                                            <type>INTEGER</type>
+                                            <name>source_type</name>
+                                            <value>0</value>
+                                        </field>
+                                    </fields>
+                                </widget>
+                                <widget>
+                                    <type>GRAPH_PROTOTYPE</type>
+                                    <y>10</y>
+                                    <width>24</width>
+                                    <height>5</height>
+                                    <fields>
+                                        <field>
+                                            <type>INTEGER</type>
+                                            <name>source_type</name>
+                                            <value>2</value>
+                                        </field>
+                                        <field>
+                                            <type>INTEGER</type>
+                                            <name>columns</name>
+                                            <value>1</value>
+                                        </field>
+                                        <field>
+                                            <type>INTEGER</type>
+                                            <name>rows</name>
+                                            <value>1</value>
+                                        </field>
+                                    </fields>
+                                </widget>
+                                <widget>
+                                    <type>GRAPH_PROTOTYPE</type>
+                                    <y>15</y>
+                                    <width>24</width>
+                                    <height>5</height>
+                                    <fields>
+                                        <field>
+                                            <type>INTEGER</type>
+                                            <name>source_type</name>
+                                            <value>2</value>
+                                        </field>
+                                        <field>
+                                            <type>INTEGER</type>
+                                            <name>columns</name>
+                                            <value>1</value>
+                                        </field>
+                                        <field>
+                                            <type>INTEGER</type>
+                                            <name>rows</name>
+                                            <value>1</value>
+                                        </field>
+                                        <field>
+                                            <type>GRAPH_PROTOTYPE</type>
+                                            <name>graphid</name>
+                                            <value>
+                                                <host>Windows Agent Custom</host>
+                                                <name>{#DEVNAME}: Количество обращений чтения и записи в секунду (IOPS)</name>
+                                            </value>
+                                        </field>
+                                    </fields>
+                                </widget>
+                                <widget>
+                                    <type>GRAPH_PROTOTYPE</type>
+                                    <y>20</y>
+                                    <width>24</width>
+                                    <height>5</height>
+                                    <fields>
+                                        <field>
+                                            <type>INTEGER</type>
+                                            <name>source_type</name>
+                                            <value>2</value>
+                                        </field>
+                                        <field>
+                                            <type>INTEGER</type>
+                                            <name>columns</name>
+                                            <value>1</value>
+                                        </field>
+                                        <field>
+                                            <type>INTEGER</type>
+                                            <name>rows</name>
+                                            <value>1</value>
+                                        </field>
+                                        <field>
+                                            <type>GRAPH_PROTOTYPE</type>
+                                            <name>graphid</name>
+                                            <value>
+                                                <host>Windows Agent Custom</host>
+                                                <name>{#DEVNAME}: Очередь</name>
+                                            </value>
+                                        </field>
+                                    </fields>
+                                </widget>
+                                <widget>
+                                    <type>GRAPH_PROTOTYPE</type>
+                                    <y>25</y>
+                                    <width>24</width>
+                                    <height>5</height>
+                                    <fields>
+                                        <field>
+                                            <type>INTEGER</type>
+                                            <name>source_type</name>
+                                            <value>2</value>
+                                        </field>
+                                        <field>
+                                            <type>INTEGER</type>
+                                            <name>columns</name>
+                                            <value>1</value>
+                                        </field>
+                                        <field>
+                                            <type>INTEGER</type>
+                                            <name>rows</name>
+                                            <value>1</value>
+                                        </field>
+                                        <field>
+                                            <type>GRAPH_PROTOTYPE</type>
+                                            <name>graphid</name>
+                                            <value>
+                                                <host>Windows Agent Custom</host>
+                                                <name>Interface {#IFNAME}({#IFALIAS}): ошибки и потери пакетов</name>
+                                            </value>
+                                        </field>
+                                    </fields>
+                                </widget>
+                            </widgets>
+                        </page>
+                    </pages>
+                </dashboard>
+            </dashboards>
+            <valuemaps>
+                <valuemap>
+                    <uuid>9b087b9bfa09434ea0d0b5c32577abcc</uuid>
+                    <name>Win32_NetworkAdapter::AdapterTypeId</name>
+                    <mappings>
+                        <mapping>
+                            <value>0</value>
+                            <newvalue>Ethernet 802.3</newvalue>
+                        </mapping>
+                        <mapping>
+                            <value>1</value>
+                            <newvalue>Token Ring 802.5</newvalue>
+                        </mapping>
+                        <mapping>
+                            <value>2</value>
+                            <newvalue>Fiber Distributed Data Interface (FDDI)</newvalue>
+                        </mapping>
+                        <mapping>
+                            <value>3</value>
+                            <newvalue>Wide Area Network (WAN)</newvalue>
+                        </mapping>
+                        <mapping>
+                            <value>4</value>
+                            <newvalue>LocalTalk</newvalue>
+                        </mapping>
+                        <mapping>
+                            <value>5</value>
+                            <newvalue>Ethernet using DIX header format</newvalue>
+                        </mapping>
+                        <mapping>
+                            <value>6</value>
+                            <newvalue>ARCNET</newvalue>
+                        </mapping>
+                        <mapping>
+                            <value>7</value>
+                            <newvalue>ARCNET (878.2)</newvalue>
+                        </mapping>
+                        <mapping>
+                            <value>8</value>
+                            <newvalue>ATM</newvalue>
+                        </mapping>
+                        <mapping>
+                            <value>9</value>
+                            <newvalue>Wireless</newvalue>
+                        </mapping>
+                        <mapping>
+                            <value>10</value>
+                            <newvalue>Infrared Wireless</newvalue>
+                        </mapping>
+                        <mapping>
+                            <value>11</value>
+                            <newvalue>Bpc</newvalue>
+                        </mapping>
+                        <mapping>
+                            <value>12</value>
+                            <newvalue>CoWan</newvalue>
+                        </mapping>
+                        <mapping>
+                            <value>13</value>
+                            <newvalue>1394</newvalue>
+                        </mapping>
+                    </mappings>
+                </valuemap>
+                <valuemap>
+                    <uuid>7e549195e83446228db8bf1101bea83d</uuid>
+                    <name>Win32_NetworkAdapter::NetConnectionStatus</name>
+                    <mappings>
+                        <mapping>
+                            <value>0</value>
+                            <newvalue>Disconnected</newvalue>
+                        </mapping>
+                        <mapping>
+                            <value>1</value>
+                            <newvalue>Connecting</newvalue>
+                        </mapping>
+                        <mapping>
+                            <value>2</value>
+                            <newvalue>Connected</newvalue>
+                        </mapping>
+                        <mapping>
+                            <value>3</value>
+                            <newvalue>Disconnecting</newvalue>
+                        </mapping>
+                        <mapping>
+                            <value>4</value>
+                            <newvalue>Hardware Not Present</newvalue>
+                        </mapping>
+                        <mapping>
+                            <value>5</value>
+                            <newvalue>Hardware Disabled</newvalue>
+                        </mapping>
+                        <mapping>
+                            <value>6</value>
+                            <newvalue>Hardware Malfunction</newvalue>
+                        </mapping>
+                        <mapping>
+                            <value>7</value>
+                            <newvalue>Media Disconnected</newvalue>
+                        </mapping>
+                        <mapping>
+                            <value>8</value>
+                            <newvalue>Authenticating</newvalue>
+                        </mapping>
+                        <mapping>
+                            <value>9</value>
+                            <newvalue>Authentication Succeeded</newvalue>
+                        </mapping>
+                        <mapping>
+                            <value>10</value>
+                            <newvalue>Authentication Failed</newvalue>
+                        </mapping>
+                        <mapping>
+                            <value>11</value>
+                            <newvalue>Invalid Address</newvalue>
+                        </mapping>
+                        <mapping>
+                            <value>12</value>
+                            <newvalue>Credentials Required</newvalue>
+                        </mapping>
+                    </mappings>
+                </valuemap>
+                <valuemap>
+                    <uuid>3f685167f97c492598ad445fc938560f</uuid>
+                    <name>Windows service state</name>
+                    <mappings>
+                        <mapping>
+                            <value>0</value>
+                            <newvalue>Running</newvalue>
+                        </mapping>
+                        <mapping>
+                            <value>1</value>
+                            <newvalue>Paused</newvalue>
+                        </mapping>
+                        <mapping>
+                            <value>2</value>
+                            <newvalue>Start pending</newvalue>
+                        </mapping>
+                        <mapping>
+                            <value>3</value>
+                            <newvalue>Pause pending</newvalue>
+                        </mapping>
+                        <mapping>
+                            <value>4</value>
+                            <newvalue>Continue pending</newvalue>
+                        </mapping>
+                        <mapping>
+                            <value>5</value>
+                            <newvalue>Stop pending</newvalue>
+                        </mapping>
+                        <mapping>
+                            <value>6</value>
+                            <newvalue>Stopped</newvalue>
+                        </mapping>
+                        <mapping>
+                            <value>7</value>
+                            <newvalue>Unknown</newvalue>
+                        </mapping>
+                        <mapping>
+                            <value>255</value>
+                            <newvalue>No such service</newvalue>
+                        </mapping>
+                    </mappings>
+                </valuemap>
+                <valuemap>
+                    <uuid>c80233756c9d43769f334d632da07b8c</uuid>
+                    <name>zabbix.host.available</name>
+                    <mappings>
+                        <mapping>
+                            <value>0</value>
+                            <newvalue>not available</newvalue>
+                        </mapping>
+                        <mapping>
+                            <value>1</value>
+                            <newvalue>available</newvalue>
+                        </mapping>
+                        <mapping>
+                            <value>2</value>
+                            <newvalue>unknown</newvalue>
+                        </mapping>
+                    </mappings>
+                </valuemap>
+                <valuemap>
+                    <uuid>5d3e53f3090448c7aaf081eb32b28ced</uuid>
+                    <name>Zabbix agent ping status</name>
+                    <mappings>
+                        <mapping>
+                            <value>1</value>
+                            <newvalue>Up</newvalue>
+                        </mapping>
+                    </mappings>
+                </valuemap>
+            </valuemaps>
+        </template>
+    </templates>
+    <triggers>
+        <trigger>
+            <uuid>8b1baeb26e154f99aefeaba3ea4fa63b</uuid>
+            <expression>min(/Windows Agent Custom/perf_counter_en[&quot;\System\Processor Queue Length&quot;],10m) - last(/Windows Agent Custom/wmi.get[root/cimv2,&quot;Select NumberOfLogicalProcessors from Win32_ComputerSystem&quot;]) * 2 &gt; {$CPU.QUEUE.CRIT.MAX}</expression>
+            <name>Длина очереди на каждое vCPU (queue length) выше {$CPU.QUEUE.CRIT.MAX} в течении 10 минут</name>
+            <opdata>Текущее значение: {ITEM.LASTVALUE1}</opdata>
+            <priority>HIGH</priority>
+            <description>PQL в течении 10 минут минус кол-во логических процессоров * 2. Например очередь 20 - 8*2 = 4 &gt; 3. Не должна превышать на один vCPU значения от 2 до 10</description>
+            <tags>
+                <tag>
+                    <tag>scope</tag>
+                    <value>performance</value>
+                </tag>
+            </tags>
+        </trigger>
+        <trigger>
+            <uuid>7c23e03060ce42b094aac2f8aea1a9ad</uuid>
+            <expression>min(/Windows Agent Custom/system.swap.pfree,5m)&lt;{$SWAP.PFREE.MIN.WARN} and last(/Windows Agent Custom/system.swap.size[,total])&gt;0</expression>
+            <name>Размер файла подкачки ниже {$SWAP.PFREE.MIN.WARN}% в течении 5 минут</name>
+            <opdata>Свободно: {ITEM.LASTVALUE1}, всего: {ITEM.LASTVALUE2}</opdata>
+            <priority>WARNING</priority>
+            <description>Размер pfree (%) SWAP ниже значения и size больше 0</description>
+            <tags>
+                <tag>
+                    <tag>scope</tag>
+                    <value>performance</value>
+                </tag>
+            </tags>
+        </trigger>
+    </triggers>
+    <graphs>
+        <graph>
+            <uuid>0c2db401fe574282ab0beb6955049330</uuid>
+            <name>CPU</name>
+            <graph_items>
+                <graph_item>
+                    <color>1A7C11</color>
+                    <item>
+                        <host>Windows Agent Custom</host>
+                        <key>perf_counter_en[&quot;\Processor Information(_total)\% User Time&quot;]</key>
+                    </item>
+                </graph_item>
+                <graph_item>
+                    <sortorder>1</sortorder>
+                    <color>FFFF00</color>
+                    <item>
+                        <host>Windows Agent Custom</host>
+                        <key>perf_counter_en[&quot;\Processor Information(_total)\% Privileged Time&quot;]</key>
+                    </item>
+                </graph_item>
+                <graph_item>
+                    <sortorder>2</sortorder>
+                    <color>CC6600</color>
+                    <item>
+                        <host>Windows Agent Custom</host>
+                        <key>perf_counter_en[&quot;\Processor Information(_total)\% Interrupt Time&quot;]</key>
+                    </item>
+                </graph_item>
+                <graph_item>
+                    <sortorder>3</sortorder>
+                    <drawtype>BOLD_LINE</drawtype>
+                    <color>FF0000</color>
+                    <item>
+                        <host>Windows Agent Custom</host>
+                        <key>system.cpu.util</key>
+                    </item>
+                </graph_item>
+            </graph_items>
+        </graph>
+        <graph>
+            <uuid>77a5588a3f2946ef82c7c373f62e9e94</uuid>
+            <name>CPU Queue</name>
+            <graph_items>
+                <graph_item>
+                    <color>1A7C11</color>
+                    <calc_fnc>ALL</calc_fnc>
+                    <item>
+                        <host>Windows Agent Custom</host>
+                        <key>perf_counter_en[&quot;\System\Processor Queue Length&quot;]</key>
+                    </item>
+                </graph_item>
+            </graph_items>
+        </graph>
+        <graph>
+            <uuid>3af1a7906a414dcfbf727c56c09762aa</uuid>
+            <name>Memory and swap used</name>
+            <ymin_type_1>FIXED</ymin_type_1>
+            <ymax_type_1>ITEM</ymax_type_1>
+            <ymax_item_1>
+                <host>Windows Agent Custom</host>
+                <key>vm.memory.size[total]</key>
+            </ymax_item_1>
+            <graph_items>
+                <graph_item>
+                    <drawtype>BOLD_LINE</drawtype>
+                    <color>FF0000</color>
+                    <calc_fnc>ALL</calc_fnc>
+                    <item>
+                        <host>Windows Agent Custom</host>
+                        <key>vm.memory.size[used]</key>
+                    </item>
+                </graph_item>
+                <graph_item>
+                    <sortorder>1</sortorder>
+                    <drawtype>BOLD_LINE</drawtype>
+                    <color>BF00FF</color>
+                    <calc_fnc>ALL</calc_fnc>
+                    <item>
+                        <host>Windows Agent Custom</host>
+                        <key>system.swap.free</key>
+                    </item>
+                </graph_item>
+                <graph_item>
+                    <sortorder>2</sortorder>
+                    <color>BFFF00</color>
+                    <calc_fnc>ALL</calc_fnc>
+                    <item>
+                        <host>Windows Agent Custom</host>
+                        <key>system.swap.size[,total]</key>
+                    </item>
+                </graph_item>
+            </graph_items>
+        </graph>
+        <graph>
+            <uuid>1b86c8f6fe3343e6838c5d02f4f64b2b</uuid>
+            <name>Memory pages</name>
+            <graph_items>
+                <graph_item>
+                    <color>2774A4</color>
+                    <calc_fnc>ALL</calc_fnc>
+                    <item>
+                        <host>Windows Agent Custom</host>
+                        <key>perf_counter_en[&quot;\Memory\Page Faults/sec&quot;]</key>
+                    </item>
+                </graph_item>
+                <graph_item>
+                    <sortorder>1</sortorder>
+                    <color>A54F10</color>
+                    <calc_fnc>ALL</calc_fnc>
+                    <item>
+                        <host>Windows Agent Custom</host>
+                        <key>perf_counter_en[&quot;\Memory\Pages/sec&quot;]</key>
+                    </item>
+                </graph_item>
+                <graph_item>
+                    <sortorder>2</sortorder>
+                    <color>00FF00</color>
+                    <calc_fnc>ALL</calc_fnc>
+                    <item>
+                        <host>Windows Agent Custom</host>
+                        <key>perf_counter_en[&quot;\Memory\Pool Nonpaged Bytes&quot;]</key>
+                    </item>
+                </graph_item>
+            </graph_items>
+        </graph>
+        <graph>
+            <uuid>9e4970840b4a42a2b73e32e2d92eb571</uuid>
+            <name>Processes number</name>
+            <graph_items>
+                <graph_item>
+                    <color>1A7C11</color>
+                    <calc_fnc>ALL</calc_fnc>
+                    <item>
+                        <host>Windows Agent Custom</host>
+                        <key>proc.num[]</key>
+                    </item>
+                </graph_item>
+            </graph_items>
+        </graph>
+    </graphs>
+</zabbix_export>
