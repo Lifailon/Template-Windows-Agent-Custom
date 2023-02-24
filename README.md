@@ -14,7 +14,7 @@
 
 ![Image alt](https://github.com/Lifailon/Template-Windows-Agent-Custom/blob/rsa/IOps/IOPS-graf.jpg)
 
-### Тестирование с помощью **[DiskSpd](https://github.com/microsoft/diskspd):**
+### Тестирование **[DiskSpd](https://github.com/microsoft/diskspd):**
 
 `diskspd.exe –c8G -d300 -r -w40 -t8 -o32 -b64K -Sh -L testfile1.dat > DiskSpeedResults.txt` \
 `-c8G` размер файла 8 Гб (лучше использовать большой размер файла, чтобы он не поместился в кэш контроллера СХД) \
