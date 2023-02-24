@@ -1,2 +1,3 @@
 # Windows-Agent-Custom
-Russified version of the standard Zabbix template
+Русифицированная версия стандартного шаблона Zabbix
+> 14.08.2022
